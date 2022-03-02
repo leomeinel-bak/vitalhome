@@ -16,35 +16,40 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalcraft.commands;
+package com.tamrielnetwork.vitalhome.utils.commands;
 
-import com.tamrielnetwork.vitalcraft.utils.commands.Cmd;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import com.tamrielnetwork.vitalhome.utils.Chat;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class VitalCraftCmd implements CommandExecutor {
+public class Cmd {
 
-	@Override
-	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+	public static boolean isArgsLengthNotEqualTo(@NotNull CommandSender sender, @NotNull String[] args, int length) {
 
-		if (Cmd.isArgsLengthNotEqualTo(sender, args, 0)) {
+		if (args.length != length) {
+			Chat.sendMessage(sender, "cmd");
 			return true;
 		}
-		doCraft(sender);
-		return true;
-
+		return false;
 	}
 
-	private void doCraft(@NotNull CommandSender sender) {
-		Player senderPlayer = (Player) sender;
+	public static boolean isNotPermitted(@NotNull CommandSender sender, @NotNull String perm) {
 
-		if (Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, "vitalcraft.craft")) {
-			return;
+		if (!sender.hasPermission(perm)) {
+			Chat.sendMessage(sender, "no-perms");
+			return true;
 		}
-		senderPlayer.openWorkbench(senderPlayer.getLocation(), true);
-
+		return false;
 	}
+
+	public static boolean isInvalidSender(@NotNull CommandSender sender) {
+
+		if (!(sender instanceof Player)) {
+			Chat.sendMessage(sender, "player-only");
+			return true;
+		}
+		return false;
+	}
+
 }

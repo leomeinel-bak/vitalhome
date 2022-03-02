@@ -16,43 +16,66 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalcraft;
+package com.tamrielnetwork.vitalhome;
 
-import com.tamrielnetwork.vitalcraft.commands.VitalCraftCmd;
-import com.tamrielnetwork.vitalcraft.files.Messages;
+import com.tamrielnetwork.vitalhome.commands.VitalHomeCmd;
+import com.tamrielnetwork.vitalhome.files.Messages;
+import com.tamrielnetwork.vitalhome.storage.HomeStorage;
+import com.tamrielnetwork.vitalhome.storage.HomeStorageSql;
+import com.tamrielnetwork.vitalhome.storage.HomeStorageYaml;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-public final class VitalCraft extends JavaPlugin {
+public final class VitalHome extends JavaPlugin {
 
+	private HomeStorage homeStorage;
 	private Messages messages;
 
 	@Override
 	public void onEnable() {
 
-		Objects.requireNonNull(getCommand("vitalcraft")).setExecutor(new VitalCraftCmd());
+		Objects.requireNonNull(getCommand("vitalhome")).setExecutor(new VitalHomeCmd());
 
 		saveDefaultConfig();
 
+		setupStorage();
+
 		messages = new Messages();
 
-		Bukkit.getLogger().info("VitalCraft v" + this.getDescription().getVersion() + " enabled");
+		Bukkit.getLogger().info("VitalHome v" + this.getDescription().getVersion() + " enabled");
 		Bukkit.getLogger().info("Copyright (C) 2022 Leopold Meinel");
 		Bukkit.getLogger().info("This program comes with ABSOLUTELY NO WARRANTY!");
 		Bukkit.getLogger().info("This is free software, and you are welcome to redistribute it under certain conditions.");
-		Bukkit.getLogger().info("See https://github.com/TamrielNetwork/VitalCraft/blob/main/LICENSE for more details.");
+		Bukkit.getLogger().info("See https://github.com/TamrielNetwork/VitalHome/blob/main/LICENSE for more details.");
 	}
 
 	@Override
 	public void onDisable() {
 
-		Bukkit.getLogger().info("VitalCraft v" + this.getDescription().getVersion() + " disabled");
+		Bukkit.getLogger().info("VitalHome v" + this.getDescription().getVersion() + " disabled");
+	}
+
+	private void setupStorage() {
+
+		String storageSystem = getConfig().getString("storage-system");
+
+		if (Objects.requireNonNull(storageSystem).equalsIgnoreCase("mysql")) {
+			this.homeStorage = new HomeStorageSql();
+		} else {
+			this.homeStorage = new HomeStorageYaml();
+		}
 	}
 
 	public Messages getMessages() {
+
 		return messages;
+	}
+
+	public HomeStorage getHomeStorage() {
+
+		return homeStorage;
 	}
 
 }

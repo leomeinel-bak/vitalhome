@@ -1,15 +1,21 @@
-name: VitalCraft
+name: VitalHome
 version: @version@
-main: com.tamrielnetwork.vitalcraft.VitalCraft
+main: com.tamrielnetwork.vitalhome.VitalHome
 api-version: 1.17
 authors: [ Tamriel Network ]
 website: https://tamriel.site
-description: Gives players the ability to open a crafting interface.
+description: Gives players the ability to set homes and teleport to them.
 commands:
-  vitalcraft:
+  vitalhome:
     description: "Main command"
-    usage: "/vitalcraft"
+    usage: "/vitalhome"
 permissions:
-  vitalcraft.craft:
-    description: "Permission to toggle crafting interface"
+  vitalhome.home:
+    description: "Permission to teleport home"
+    default: op
+  vitalhome.sethome:
+    description: "Permission to set a home"
+    default: op
+  vitalhome.homes:
+    description: "Permission with number of homes a player can set (fex. vitalhome.homes.2 = 2 homes)"
     default: op

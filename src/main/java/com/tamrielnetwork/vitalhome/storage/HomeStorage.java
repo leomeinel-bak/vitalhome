@@ -16,26 +16,22 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalcraft.utils;
+package com.tamrielnetwork.vitalhome.storage;
 
-import com.tamrielnetwork.vitalcraft.VitalCraft;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
+import com.tamrielnetwork.vitalhome.VitalHome;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
+public abstract class HomeStorage {
 
-public class Chat {
+	protected final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
-	private static final VitalCraft main = JavaPlugin.getPlugin(VitalCraft.class);
+	public abstract Location loadHome(@NotNull Player player, @NotNull String arg);
 
-	public static void sendMessage(@NotNull CommandSender player, @NotNull String message) {
-		player.sendMessage(replaceColors(Objects.requireNonNull(main.getMessages().getMessagesConf().getString(message))));
-	}
+	public abstract void saveHome(@NotNull Player player, @NotNull String arg);
 
-	public static String replaceColors(@NotNull String string) {
-		return ChatColor.translateAlternateColorCodes('&', string);
-	}
+	public abstract void clear(@NotNull String playerUUID, @NotNull String arg);
 
 }
