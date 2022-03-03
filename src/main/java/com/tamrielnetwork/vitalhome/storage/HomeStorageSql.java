@@ -31,7 +31,9 @@ import org.jetbrains.annotations.NotNull;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class HomeStorageSql extends HomeStorage {
 
@@ -55,15 +57,12 @@ public class HomeStorageSql extends HomeStorage {
 						continue;
 					}
 					if (rs.getString(1) == null) {
-						Bukkit.getLogger().severe("VitalHome cannot find playerUUID in database");
 						continue;
 					}
 					if (!Objects.equals(rs.getString(2), arg)) {
-						Chat.sendMessage(player, "invalid-home");
 						continue;
 					}
 					if (rs.getString(3) == null) {
-						Bukkit.getLogger().severe("VitalHome cannot find world in database");
 						continue;
 					}
 					world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(3)));
@@ -80,6 +79,33 @@ public class HomeStorageSql extends HomeStorage {
 			return null;
 		}
 		return new Location(world, x, y, z, yaw, pitch);
+	}
+
+	@Override
+	public Set<String> listHome(@NotNull Player player) {
+
+		String playerUUID = player.getUniqueId().toString();
+		Set<String> homes = new HashSet<>();
+
+		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Home")) {
+			try (ResultSet rs = selectStatement.executeQuery()) {
+				while (rs.next()) {
+					if (!Objects.equals(rs.getString(1), playerUUID)) {
+						continue;
+					}
+					if (rs.getString(1) == null) {
+						continue;
+					}
+
+					homes.add(rs.getString(2));
+				}
+			}
+		} catch (SQLException throwables) {
+
+			throwables.printStackTrace();
+			return null;
+		}
+		return homes;
 	}
 
 	@Override

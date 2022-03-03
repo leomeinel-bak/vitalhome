@@ -1,3 +1,9 @@
+# Command delay
+delay:
+  enabled: true
+  # time in s
+  time: 3
+
 # Choose a storage system (mysql or yaml)
 storage-system: yaml
 

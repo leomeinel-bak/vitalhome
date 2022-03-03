@@ -19,6 +19,7 @@
 package com.tamrielnetwork.vitalhome;
 
 import com.tamrielnetwork.vitalhome.commands.VitalHomeCmd;
+import com.tamrielnetwork.vitalhome.commands.VitalSethomeCmd;
 import com.tamrielnetwork.vitalhome.files.Messages;
 import com.tamrielnetwork.vitalhome.storage.HomeStorage;
 import com.tamrielnetwork.vitalhome.storage.HomeStorageSql;
@@ -36,7 +37,7 @@ public final class VitalHome extends JavaPlugin {
 	@Override
 	public void onEnable() {
 
-		Objects.requireNonNull(getCommand("vitalhome")).setExecutor(new VitalHomeCmd());
+		registerCommands();
 
 		saveDefaultConfig();
 
@@ -66,6 +67,13 @@ public final class VitalHome extends JavaPlugin {
 		} else {
 			this.homeStorage = new HomeStorageYaml();
 		}
+	}
+
+	private void registerCommands() {
+
+		Objects.requireNonNull(getCommand("home")).setExecutor(new VitalHomeCmd());
+		Objects.requireNonNull(getCommand("home")).setTabCompleter(new VitalHomeCmd());
+		Objects.requireNonNull(getCommand("sethome")).setExecutor(new VitalSethomeCmd());
 	}
 
 	public Messages getMessages() {

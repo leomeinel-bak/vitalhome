@@ -30,7 +30,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.Key;
 import java.util.Objects;
 import java.util.Set;
 
@@ -52,7 +51,6 @@ public class HomeStorageYaml extends HomeStorage {
 		String playerUUID = player.getUniqueId().toString();
 
 		if (homeConf.getString("home." + playerUUID + "." + arg + ".world") == null) {
-			Bukkit.getLogger().severe("VitalHome cannot find world in home.yml");
 			return null;
 		}
 		World world = Bukkit.getWorld(Objects.requireNonNull(homeConf.getString("home." + playerUUID + "." + arg + ".world")));
@@ -63,6 +61,20 @@ public class HomeStorageYaml extends HomeStorage {
 		int pitch = homeConf.getInt("home." + playerUUID + "." + arg + ".pitch");
 
 		return new Location(world, x, y, z, yaw, pitch);
+	}
+
+	@Override
+	public Set<String> listHome(@NotNull Player player) {
+
+		String playerUUID = player.getUniqueId().toString();
+		Set<String> homes;
+
+		if (homeConf.getString("home." + playerUUID) == null) {
+			return null;
+		}
+		homes = Objects.requireNonNull(homeConf.getConfigurationSection("home." + playerUUID)).getKeys(false);
+
+		return homes;
 	}
 
 	@Override
