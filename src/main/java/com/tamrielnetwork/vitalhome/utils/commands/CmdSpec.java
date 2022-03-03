@@ -77,7 +77,6 @@ public class CmdSpec {
 			}
 		}
 
-		player.sendMessage(String.valueOf(defaultValue));
 		return defaultValue;
 	}
 

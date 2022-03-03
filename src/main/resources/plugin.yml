@@ -12,6 +12,9 @@ commands:
   sethome:
     description: "Main command"
     usage: "/sethome"
+  delhome:
+    description: "Main command"
+    usage: "/delhome"
 permissions:
   vitalhome.home:
     description: "Permission to teleport home"

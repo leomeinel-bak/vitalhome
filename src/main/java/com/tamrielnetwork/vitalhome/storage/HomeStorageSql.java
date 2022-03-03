@@ -150,7 +150,7 @@ public class HomeStorageSql extends HomeStorage {
 	@Override
 	public void clear(@NotNull String playerUUID, @NotNull String arg) {
 
-		try (PreparedStatement deleteStatement = SqlManager.getConnection().prepareStatement("DELETE FROM " + Sql.getPrefix() + "Home WHERE `UUID`=" + "'" + playerUUID + "' AND `Home`=" + "'" + arg + "'")) {
+		try (PreparedStatement deleteStatement = SqlManager.getConnection().prepareStatement("DELETE FROM " + Sql.getPrefix() + "Home WHERE `UUID`=" + "'" + playerUUID + "' AND `Home`=" + "'" + arg.toLowerCase() + "'")) {
 			deleteStatement.executeUpdate();
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();

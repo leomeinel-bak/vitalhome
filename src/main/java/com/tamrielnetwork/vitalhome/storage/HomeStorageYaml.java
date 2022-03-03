@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 public class HomeStorageYaml extends HomeStorage {
 
@@ -108,11 +109,15 @@ public class HomeStorageYaml extends HomeStorage {
 	@Override
 	public void clear(@NotNull String playerUUID, @NotNull String arg) {
 
-		for (String key : homeConf.getKeys(false)) {
-			if (Objects.equals(key, playerUUID + "." + arg)) {
-				homeConf.set(key, null);
+		if (homeConf.getConfigurationSection("home." + playerUUID) == null) {
+			return;
+		}
+		for (String key : Objects.requireNonNull(homeConf.getConfigurationSection("home." + playerUUID)).getKeys(false)) {
+			if (Objects.equals(key, arg)) {
+				homeConf.set("home." + playerUUID + "." + key, null);
 			}
 		}
+		save();
 	}
 
 	public void save() {
