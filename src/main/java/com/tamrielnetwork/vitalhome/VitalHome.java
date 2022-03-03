@@ -76,6 +76,7 @@ public final class VitalHome extends JavaPlugin {
 		Objects.requireNonNull(getCommand("home")).setTabCompleter(new VitalHomeCmd());
 		Objects.requireNonNull(getCommand("sethome")).setExecutor(new VitalSethomeCmd());
 		Objects.requireNonNull(getCommand("delhome")).setExecutor(new VitalDelHomeCmd());
+		Objects.requireNonNull(getCommand("delhome")).setTabCompleter(new VitalDelHomeCmd());
 	}
 
 	public Messages getMessages() {
