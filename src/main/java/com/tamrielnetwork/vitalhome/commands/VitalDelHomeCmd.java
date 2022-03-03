@@ -23,7 +23,6 @@ import com.tamrielnetwork.vitalhome.utils.Chat;
 import com.tamrielnetwork.vitalhome.utils.commands.Cmd;
 import com.tamrielnetwork.vitalhome.utils.commands.CmdSpec;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;

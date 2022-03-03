@@ -52,4 +52,9 @@ public class Cmd {
 		return false;
 	}
 
+	public static boolean isInvalidPlayer(Player player) {
+
+		return player == null;
+	}
+
 }
