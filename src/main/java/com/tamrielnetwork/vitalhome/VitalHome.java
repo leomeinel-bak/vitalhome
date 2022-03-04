@@ -20,6 +20,7 @@ package com.tamrielnetwork.vitalhome;
 
 import com.tamrielnetwork.vitalhome.commands.VitalDelHomeCmd;
 import com.tamrielnetwork.vitalhome.commands.VitalHomeCmd;
+import com.tamrielnetwork.vitalhome.commands.VitalHomesCmd;
 import com.tamrielnetwork.vitalhome.commands.VitalSethomeCmd;
 import com.tamrielnetwork.vitalhome.files.Messages;
 import com.tamrielnetwork.vitalhome.storage.HomeStorage;
@@ -74,6 +75,7 @@ public final class VitalHome extends JavaPlugin {
 
 		Objects.requireNonNull(getCommand("home")).setExecutor(new VitalHomeCmd());
 		Objects.requireNonNull(getCommand("home")).setTabCompleter(new VitalHomeCmd());
+		Objects.requireNonNull(getCommand("homes")).setExecutor(new VitalHomesCmd());
 		Objects.requireNonNull(getCommand("sethome")).setExecutor(new VitalSethomeCmd());
 		Objects.requireNonNull(getCommand("delhome")).setExecutor(new VitalDelHomeCmd());
 		Objects.requireNonNull(getCommand("delhome")).setTabCompleter(new VitalDelHomeCmd());

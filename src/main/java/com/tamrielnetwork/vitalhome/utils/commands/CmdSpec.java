@@ -82,6 +82,15 @@ public class CmdSpec {
 		return isInvalidName(sender, arg);
 	}
 
+	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
+
+		if (Cmd.isInvalidSender(sender)) {
+			return true;
+		}
+
+		return Cmd.isNotPermitted(sender, perm);
+	}
+
 	public static boolean isInvalidLocation(Location location) {
 
 		if (location == null) {

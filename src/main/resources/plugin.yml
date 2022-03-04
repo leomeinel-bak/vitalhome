@@ -15,6 +15,9 @@ commands:
   delhome:
     description: "Main command"
     usage: "/delhome"
+  homes:
+    description: "Main command"
+    usage: "/homes"
 permissions:
   vitalhome.home:
     description: "Permission to teleport home"
@@ -24,6 +27,9 @@ permissions:
     default: op
   vitalhome.homes:
     description: "Permission with number of homes a player can set (fex. vitalhome.homes.2 = 2 homes)"
+    default: op
+  vitalhome.list:
+    description: "Permission to list homes"
     default: op
   vitalhome.delay.bypass:
     description: "Permission to bypass delay"
