@@ -33,7 +33,6 @@ public class CmdSpec {
 
 	private static final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
-	@SuppressWarnings ("ConstantConditions")
 	public static void doDelay(@NotNull CommandSender sender, Location location) {
 
 		Player senderPlayer = (Player) sender;
@@ -45,8 +44,6 @@ public class CmdSpec {
 
 				@Override
 				public void run() {
-
-					// @SuppressWarnings("ConstantConditions") - senderPlayer could be null after runnable
 					if (Cmd.isInvalidPlayer(senderPlayer)) {
 						return;
 					}

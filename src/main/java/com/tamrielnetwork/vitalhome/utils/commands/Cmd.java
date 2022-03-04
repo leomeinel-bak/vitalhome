@@ -54,7 +54,7 @@ public class Cmd {
 
 	public static boolean isInvalidPlayer(Player player) {
 
-		return player == null;
+		return !player.isOnline();
 	}
 
 }
