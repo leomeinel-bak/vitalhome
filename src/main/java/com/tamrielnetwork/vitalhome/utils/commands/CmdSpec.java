@@ -29,15 +29,25 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class CmdSpec {
 
 	private static final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
+	private static final List<UUID> onActiveDelay = new ArrayList<>();
 
 	public static void doDelay(@NotNull CommandSender sender, Location location) {
 
 		Player senderPlayer = (Player) sender;
 
 		if (!senderPlayer.hasPermission("vitalspawn.delay.bypass")) {
+			if (onActiveDelay.contains(senderPlayer.getUniqueId())) {
+				Chat.sendMessage(sender, "active-delay");
+				return;
+			}
+			onActiveDelay.add(senderPlayer.getUniqueId());
 			String timeRemaining = String.valueOf(main.getConfig().getLong("delay.time"));
 			Chat.sendMessage(senderPlayer, ImmutableMap.of("%countdown%", timeRemaining), "countdown");
 			new BukkitRunnable() {
@@ -46,10 +56,12 @@ public class CmdSpec {
 				public void run() {
 
 					if (Cmd.isInvalidPlayer(senderPlayer)) {
+						onActiveDelay.remove(senderPlayer.getUniqueId());
 						return;
 					}
 
 					senderPlayer.teleport(location);
+					onActiveDelay.remove(senderPlayer.getUniqueId());
 				}
 			}.runTaskLater(main, (main.getConfig().getLong("delay.time") * 20L));
 		} else {
