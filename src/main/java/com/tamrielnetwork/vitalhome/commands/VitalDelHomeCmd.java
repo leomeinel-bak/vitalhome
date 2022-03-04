@@ -50,7 +50,7 @@ public class VitalDelHomeCmd implements TabExecutor {
 
 	private void delHome(@NotNull CommandSender sender, String arg) {
 
-		if (CmdSpec.isInvalidCmd(sender, "vitalhome.sethome")) {
+		if (CmdSpec.isInvalidCmd(sender, "vitalhome.sethome", arg)) {
 			return;
 		}
 		Player senderPlayer = (Player) sender;

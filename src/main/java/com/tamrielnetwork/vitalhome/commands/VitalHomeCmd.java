@@ -50,11 +50,12 @@ public class VitalHomeCmd implements TabExecutor {
 
 	private void doHome(@NotNull CommandSender sender, String arg) {
 
-		if (CmdSpec.isInvalidCmd(sender, "vitalhome.home")) {
+		if (CmdSpec.isInvalidCmd(sender, "vitalhome.home", arg)) {
 			return;
 		}
 		Player senderPlayer = (Player) sender;
 		Location location = main.getHomeStorage().loadHome(senderPlayer, arg.toLowerCase());
+
 		if (CmdSpec.isInvalidLocation(location)) {
 			return;
 		}

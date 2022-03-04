@@ -45,7 +45,7 @@ public class VitalSethomeCmd implements CommandExecutor {
 
 	private void setHome(@NotNull CommandSender sender, String arg) {
 
-		if (CmdSpec.isInvalidCmd(sender, "vitalhome.sethome")) {
+		if (CmdSpec.isInvalidCmd(sender, "vitalhome.sethome", arg)) {
 			return;
 		}
 		Player senderPlayer = (Player) sender;

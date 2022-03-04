@@ -44,6 +44,7 @@ public class CmdSpec {
 
 				@Override
 				public void run() {
+
 					if (Cmd.isInvalidPlayer(senderPlayer)) {
 						return;
 					}
@@ -56,9 +57,17 @@ public class CmdSpec {
 		}
 	}
 
-	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
+	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm, @NotNull String arg) {
 
-		return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
+		if (Cmd.isInvalidSender(sender)) {
+			return true;
+		}
+
+		if (Cmd.isNotPermitted(sender, perm)) {
+			return true;
+		}
+
+		return isInvalidName(sender, arg);
 	}
 
 	public static boolean isInvalidLocation(Location location) {
@@ -69,7 +78,7 @@ public class CmdSpec {
 		return location.getWorld() == null;
 	}
 
-	public static int getAllowedHomes(Player player, int defaultValue) {
+	public static int getAllowedHomes(@NotNull Player player, int defaultValue) {
 
 		String permissionPrefix = "vitalhome.homes.";
 
@@ -81,6 +90,15 @@ public class CmdSpec {
 		}
 
 		return defaultValue;
+	}
+
+	private static boolean isInvalidName(@NotNull CommandSender sender, @NotNull String arg) {
+
+		if (!arg.toLowerCase().matches("[a-z0-9]{1,16}")) {
+			Chat.sendMessage(sender, "invalid-name");
+			return true;
+		}
+		return false;
 	}
 
 }
