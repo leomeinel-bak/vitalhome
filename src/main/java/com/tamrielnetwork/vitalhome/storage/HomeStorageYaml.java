@@ -36,6 +36,7 @@ import java.util.Set;
 
 public class HomeStorageYaml extends HomeStorage {
 
+	private static final String IOEXCEPTION = "VitalHome encountered an IOException while executing task";
 	private static final String HOME = "home.";
 	private static final String WORLD = ".world";
 	private final File homeFile;
@@ -126,8 +127,8 @@ public class HomeStorageYaml extends HomeStorage {
 
 		try {
 			homeConf.save(homeFile);
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ignored) {
+			Bukkit.getLogger().info(IOEXCEPTION);
 		}
 	}
 

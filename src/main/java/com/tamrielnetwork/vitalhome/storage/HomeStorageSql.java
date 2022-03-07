@@ -72,7 +72,7 @@ public class HomeStorageSql extends HomeStorage {
 				}
 			}
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 			return null;
 		}
 		return new Location(world, x, y, z, yaw, pitch);
@@ -95,7 +95,7 @@ public class HomeStorageSql extends HomeStorage {
 				}
 			}
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 			return Collections.emptySet();
 		}
 		return homes;
@@ -114,7 +114,7 @@ public class HomeStorageSql extends HomeStorage {
 				homes = rs.getInt(1);
 			}
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 		}
 
 		if (homes >= CmdSpec.getAllowedHomes(player, 1)) {
@@ -136,7 +136,7 @@ public class HomeStorageSql extends HomeStorage {
 			insertStatement.setInt(8, (int) location.getPitch());
 			insertStatement.executeUpdate();
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 		}
 	}
 
@@ -146,7 +146,7 @@ public class HomeStorageSql extends HomeStorage {
 		try (PreparedStatement deleteStatement = SqlManager.getConnection().prepareStatement("DELETE FROM " + Sql.getPrefix() + "Home WHERE `UUID`=" + "'" + playerUUID + "' AND `Home`=" + "'" + arg + "'")) {
 			deleteStatement.executeUpdate();
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 		}
 	}
 
