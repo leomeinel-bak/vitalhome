@@ -31,11 +31,14 @@ import org.jetbrains.annotations.NotNull;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class HomeStorageSql extends HomeStorage {
+
+	private static final String SQLEXCEPTION = "VitalHome encountered an SQLException while executing task";
 
 	public HomeStorageSql() {
 
@@ -48,21 +51,16 @@ public class HomeStorageSql extends HomeStorage {
 		String playerUUID = player.getUniqueId().toString();
 
 		World world = null;
-		int x = 0, y = 0, z = 0, yaw = 0, pitch = 0;
+		int x = 0;
+		int y = 0;
+		int z = 0;
+		int yaw = 0;
+		int pitch = 0;
 
 		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Home")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
-					if (!Objects.equals(rs.getString(1), playerUUID)) {
-						continue;
-					}
-					if (rs.getString(1) == null) {
-						continue;
-					}
-					if (!Objects.equals(rs.getString(2), arg)) {
-						continue;
-					}
-					if (rs.getString(3) == null) {
+					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null || !Objects.equals(rs.getString(2), arg) || rs.getString(3) == null) {
 						continue;
 					}
 					world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(3)));
@@ -73,9 +71,8 @@ public class HomeStorageSql extends HomeStorage {
 					pitch = rs.getInt(8);
 				}
 			}
-		} catch (SQLException throwables) {
-
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 			return null;
 		}
 		return new Location(world, x, y, z, yaw, pitch);
@@ -90,20 +87,16 @@ public class HomeStorageSql extends HomeStorage {
 		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Home")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
-					if (!Objects.equals(rs.getString(1), playerUUID)) {
-						continue;
-					}
-					if (rs.getString(1) == null) {
+					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null) {
 						continue;
 					}
 
 					homes.add(rs.getString(2));
 				}
 			}
-		} catch (SQLException throwables) {
-
-			throwables.printStackTrace();
-			return null;
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
+			return Collections.emptySet();
 		}
 		return homes;
 	}
@@ -120,8 +113,8 @@ public class HomeStorageSql extends HomeStorage {
 				rs.next();
 				homes = rs.getInt(1);
 			}
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 		}
 
 		if (homes >= CmdSpec.getAllowedHomes(player, 1)) {
@@ -142,8 +135,8 @@ public class HomeStorageSql extends HomeStorage {
 			insertStatement.setInt(7, (int) location.getYaw());
 			insertStatement.setInt(8, (int) location.getPitch());
 			insertStatement.executeUpdate();
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 		}
 	}
 
@@ -152,8 +145,8 @@ public class HomeStorageSql extends HomeStorage {
 
 		try (PreparedStatement deleteStatement = SqlManager.getConnection().prepareStatement("DELETE FROM " + Sql.getPrefix() + "Home WHERE `UUID`=" + "'" + playerUUID + "' AND `Home`=" + "'" + arg + "'")) {
 			deleteStatement.executeUpdate();
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 		}
 	}
 

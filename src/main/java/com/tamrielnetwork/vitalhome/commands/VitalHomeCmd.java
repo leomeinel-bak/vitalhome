@@ -69,7 +69,7 @@ public class VitalHomeCmd implements TabExecutor {
 
 		Player senderPlayer = (Player) sender;
 
-		if (main.getHomeStorage().listHome(senderPlayer) == null) {
+		if (main.getHomeStorage().listHome(senderPlayer).isEmpty()) {
 			return null;
 		}
 		return new ArrayList<>(main.getHomeStorage().listHome(senderPlayer));

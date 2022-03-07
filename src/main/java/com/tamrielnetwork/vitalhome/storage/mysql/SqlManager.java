@@ -20,6 +20,7 @@ package com.tamrielnetwork.vitalhome.storage.mysql;
 
 import com.tamrielnetwork.vitalhome.VitalHome;
 import com.tamrielnetwork.vitalhome.utils.sql.Sql;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,10 +31,14 @@ import java.sql.SQLException;
 
 public class SqlManager {
 
+	private static final String SQLEXCEPTION = "VitalHome encountered an SQLException while executing task";
 	private static Connection connection;
 	private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 	private final int port;
-	private final String host, database, username, password;
+	private final String host;
+	private final String database;
+	private final String username;
+	private final String password;
 
 	public SqlManager() {
 
@@ -45,12 +50,10 @@ public class SqlManager {
 
 		enableConnection();
 
-		try {
-			PreparedStatement statementSpawnTable = SqlManager.getConnection()
-					.prepareStatement("CREATE TABLE IF NOT EXISTS " + Sql.getPrefix() + "Home (`UUID` TEXT, `Home` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)");
+		try (PreparedStatement statementSpawnTable = SqlManager.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS " + Sql.getPrefix() + "Home (`UUID` TEXT, `Home` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)")){
 			statementSpawnTable.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 		}
 	}
 
@@ -71,12 +74,11 @@ public class SqlManager {
 				return;
 			}
 
-			Class.forName("com.mysql.jdbc.Driver");
 			setConnection(DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password));
 
 			main.getLogger().info("Connected successfully with the database!");
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 		}
 	}
 

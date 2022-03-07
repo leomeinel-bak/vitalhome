@@ -30,11 +30,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
 public class HomeStorageYaml extends HomeStorage {
 
+	private static final String HOME = "home.";
+	private static final String WORLD = ".world";
 	private final File homeFile;
 	private final FileConfiguration homeConf;
 
@@ -50,15 +53,15 @@ public class HomeStorageYaml extends HomeStorage {
 
 		String playerUUID = player.getUniqueId().toString();
 
-		if (homeConf.getString("home." + playerUUID + "." + arg + ".world") == null) {
+		if (homeConf.getString(HOME + playerUUID + "." + arg + WORLD) == null) {
 			return null;
 		}
-		World world = Bukkit.getWorld(Objects.requireNonNull(homeConf.getString("home." + playerUUID + "." + arg + ".world")));
-		int x = homeConf.getInt("home." + playerUUID + "." + arg + ".x");
-		int y = homeConf.getInt("home." + playerUUID + "." + arg + ".y");
-		int z = homeConf.getInt("home." + playerUUID + "." + arg + ".z");
-		int yaw = homeConf.getInt("home." + playerUUID + "." + arg + ".yaw");
-		int pitch = homeConf.getInt("home." + playerUUID + "." + arg + ".pitch");
+		World world = Bukkit.getWorld(Objects.requireNonNull(homeConf.getString(HOME + playerUUID + "." + arg + WORLD)));
+		int x = homeConf.getInt(HOME + playerUUID + "." + arg + ".x");
+		int y = homeConf.getInt(HOME + playerUUID + "." + arg + ".y");
+		int z = homeConf.getInt(HOME + playerUUID + "." + arg + ".z");
+		int yaw = homeConf.getInt(HOME + playerUUID + "." + arg + ".yaw");
+		int pitch = homeConf.getInt(HOME + playerUUID + "." + arg + ".pitch");
 
 		return new Location(world, x, y, z, yaw, pitch);
 	}
@@ -69,10 +72,10 @@ public class HomeStorageYaml extends HomeStorage {
 		String playerUUID = player.getUniqueId().toString();
 		Set<String> homes;
 
-		if (homeConf.getString("home." + playerUUID) == null) {
-			return null;
+		if (homeConf.getString(HOME + playerUUID) == null) {
+			return Collections.emptySet();
 		}
-		homes = Objects.requireNonNull(homeConf.getConfigurationSection("home." + playerUUID)).getKeys(false);
+		homes = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID)).getKeys(false);
 
 		return homes;
 	}
@@ -83,8 +86,8 @@ public class HomeStorageYaml extends HomeStorage {
 		String playerUUID = player.getUniqueId().toString();
 		Location location = player.getLocation();
 
-		if (homeConf.getConfigurationSection("home." + playerUUID) != null) {
-			@NotNull Set<String> keys = Objects.requireNonNull(homeConf.getConfigurationSection("home." + playerUUID)).getKeys(false);
+		if (homeConf.getConfigurationSection(HOME + playerUUID) != null) {
+			@NotNull Set<String> keys = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID)).getKeys(false);
 
 			if (keys.size() >= CmdSpec.getAllowedHomes(player, 1) && !keys.contains(arg)) {
 				Chat.sendMessage(player, "max-homes");
@@ -95,12 +98,12 @@ public class HomeStorageYaml extends HomeStorage {
 
 		clear(playerUUID, arg);
 
-		homeConf.set("home." + playerUUID + "." + arg + ".world", location.getWorld().getName());
-		homeConf.set("home." + playerUUID + "." + arg + ".x", (int) location.getX());
-		homeConf.set("home." + playerUUID + "." + arg + ".y", (int) location.getY());
-		homeConf.set("home." + playerUUID + "." + arg + ".z", (int) location.getZ());
-		homeConf.set("home." + playerUUID + "." + arg + ".yaw", (int) location.getYaw());
-		homeConf.set("home." + playerUUID + "." + arg + ".pitch", (int) location.getPitch());
+		homeConf.set(HOME + playerUUID + "." + arg + WORLD, location.getWorld().getName());
+		homeConf.set(HOME + playerUUID + "." + arg + ".x", (int) location.getX());
+		homeConf.set(HOME + playerUUID + "." + arg + ".y", (int) location.getY());
+		homeConf.set(HOME + playerUUID + "." + arg + ".z", (int) location.getZ());
+		homeConf.set(HOME + playerUUID + "." + arg + ".yaw", (int) location.getYaw());
+		homeConf.set(HOME + playerUUID + "." + arg + ".pitch", (int) location.getPitch());
 
 		save();
 	}
@@ -108,12 +111,12 @@ public class HomeStorageYaml extends HomeStorage {
 	@Override
 	public void clear(@NotNull String playerUUID, @NotNull String arg) {
 
-		if (homeConf.getConfigurationSection("home." + playerUUID) == null) {
+		if (homeConf.getConfigurationSection(HOME + playerUUID) == null) {
 			return;
 		}
-		for (String key : Objects.requireNonNull(homeConf.getConfigurationSection("home." + playerUUID)).getKeys(false)) {
+		for (String key : Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID)).getKeys(false)) {
 			if (Objects.equals(key, arg)) {
-				homeConf.set("home." + playerUUID + "." + key, null);
+				homeConf.set(HOME + playerUUID + "." + key, null);
 			}
 		}
 		save();

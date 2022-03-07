@@ -56,7 +56,7 @@ public class VitalHomesCmd implements CommandExecutor {
 		StringBuilder homesBuilder = new StringBuilder();
 		Set<String> homesSet = main.getHomeStorage().listHome(senderPlayer);
 
-		if (homesSet == null || homesSet.isEmpty()) {
+		if (homesSet.isEmpty()) {
 			Chat.sendMessage(sender, "no-homes");
 			return;
 		}
