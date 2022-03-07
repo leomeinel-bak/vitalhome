@@ -124,7 +124,7 @@ public class HomeStorageSql extends HomeStorage {
 			throwables.printStackTrace();
 		}
 
-		if (homes >= CmdSpec.getAllowedHomes(player, 2)) {
+		if (homes >= CmdSpec.getAllowedHomes(player, 1)) {
 			Chat.sendMessage(player, "max-homes");
 			return;
 		}

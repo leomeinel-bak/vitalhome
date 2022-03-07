@@ -30,6 +30,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -101,16 +102,18 @@ public class CmdSpec {
 
 	public static int getAllowedHomes(@NotNull Player player, int defaultValue) {
 
+		List <Integer> values = new ArrayList<>();
+		values.add(defaultValue);
+
 		String permissionPrefix = "vitalhome.homes.";
 
 		for (PermissionAttachmentInfo attachmentInfo : player.getEffectivePermissions()) {
 			if (attachmentInfo.getPermission().startsWith(permissionPrefix)) {
 				String permission = attachmentInfo.getPermission();
-				return Integer.parseInt(permission.substring(permission.lastIndexOf(".") + 1));
+				values.add(Integer.parseInt(permission.substring(permission.lastIndexOf(".") + 1)));
 			}
 		}
-
-		return defaultValue;
+		return Collections.max(values);
 	}
 
 	private static boolean isInvalidName(@NotNull CommandSender sender, @NotNull String arg) {

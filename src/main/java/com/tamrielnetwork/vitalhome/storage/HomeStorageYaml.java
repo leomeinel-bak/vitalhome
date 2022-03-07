@@ -86,7 +86,7 @@ public class HomeStorageYaml extends HomeStorage {
 		if (homeConf.getConfigurationSection("home." + playerUUID) != null) {
 			@NotNull Set<String> keys = Objects.requireNonNull(homeConf.getConfigurationSection("home." + playerUUID)).getKeys(false);
 
-			if (keys.size() >= CmdSpec.getAllowedHomes(player, 2) && !keys.contains(arg)) {
+			if (keys.size() >= CmdSpec.getAllowedHomes(player, 1) && !keys.contains(arg)) {
 				Chat.sendMessage(player, "max-homes");
 				return;
 			}
