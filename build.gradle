@@ -26,3 +26,15 @@ processResources {
         filter ReplaceTokens, tokens: [version: version]
     }
 }
+
+plugins {
+    id "org.sonarqube" version "3.3"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "TamrielNetwork_VitalHome"
+        property "sonar.organization", "tamrielnetwork"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
