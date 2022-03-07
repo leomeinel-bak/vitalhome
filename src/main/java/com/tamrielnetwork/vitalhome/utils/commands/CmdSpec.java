@@ -102,7 +102,7 @@ public class CmdSpec {
 
 	public static int getAllowedHomes(@NotNull Player player, int defaultValue) {
 
-		List <Integer> values = new ArrayList<>();
+		List<Integer> values = new ArrayList<>();
 		values.add(defaultValue);
 
 		String permissionPrefix = "vitalhome.homes.";
