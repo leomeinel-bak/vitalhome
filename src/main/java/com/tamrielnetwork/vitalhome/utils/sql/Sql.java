@@ -25,6 +25,11 @@ public class Sql {
 
 	private static final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
+	private Sql() {
+
+		throw new IllegalStateException("Utility class");
+	}
+
 	public static String getPrefix() {
 
 		return main.getConfig().getString("mysql.prefix");

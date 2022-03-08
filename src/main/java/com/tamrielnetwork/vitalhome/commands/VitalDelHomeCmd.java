@@ -41,7 +41,7 @@ public class VitalDelHomeCmd implements TabExecutor {
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
 		if (Cmd.isArgsLengthNotEqualTo(sender, args, 1)) {
-			return true;
+			return false;
 		}
 		delHome(sender, args[0]);
 		return true;
