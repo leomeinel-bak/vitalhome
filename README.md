@@ -85,12 +85,12 @@ To get the plugin running on your server follow these simple steps.
 
 1. Permission: `vitalhome.home`
 
-* Command: `/vitalhome home <name>`
+* Command: `/home <name>`
 * Description: Teleport home
 
 2. Permission: `vitalhome.sethome`
 
-* Command: `/vitalhome sethome <name>`
+* Command: `/sethome <name>`
 * Description: Set a home
 
 3. Permission: `vitalhome.homes.<number of allowed homes>`
@@ -100,6 +100,12 @@ To get the plugin running on your server follow these simple steps.
 ### Configuration - config.yml
 
 ```
+# Command delay
+delay:
+  enabled: true
+  # time in s
+  time: 3
+
 # Choose a storage system (mysql or yaml)
 storage-system: yaml
 
@@ -115,12 +121,16 @@ mysql:
 ### Configuration - messages.yml
 
 ```
+cmd: "&fUsage: &b/home <name> &for &b/sethome <name>"
+max-homes: "&fYou have reached the limit"
+home-set: "&fHome has been set"
+home-removed: "&fHome has been removed"
+no-perms: "&cYou don't have enough permissions!"
 player-only: "&cThis command can only be executed by players!"
-no-perms: "&7You don't have enough permissions!"
-cmd: "cmd"
-invalid-home: "invalid home"
-home-set: "set-home"
-max-homes: "max-homes"
+countdown: "&fTeleporting in &b%countdown% &fseconds"
+invalid-name: "&cOnly a max of &b16 alphanumeric chars &cis allowed!"
+active-delay: "&cYou are already trying to teleport!"
+no-homes: "&cYou don't have any homes!"
 ```
 
 <!-- ROADMAP -->
