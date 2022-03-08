@@ -38,6 +38,7 @@ public class CmdSpec {
 
 	private static final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 	private static final List<UUID> onActiveDelay = new ArrayList<>();
+
 	private CmdSpec() {
 
 		throw new IllegalStateException("Utility class");

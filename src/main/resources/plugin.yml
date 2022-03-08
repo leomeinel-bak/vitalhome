@@ -25,11 +25,14 @@ permissions:
   vitalhome.sethome:
     description: "Permission to set a home"
     default: op
-  vitalhome.homes:
-    description: "Permission with number of homes a player can set (fex. vitalhome.homes.2 = 2 homes)"
+  vitalhome.delhome:
+    description: "Permission to delete a home"
     default: op
   vitalhome.list:
     description: "Permission to list homes"
+    default: op
+  vitalhome.homes:
+    description: "Permission with number of homes a player can set (fex. vitalhome.homes.2 = 2 homes)"
     default: op
   vitalhome.delay.bypass:
     description: "Permission to bypass delay"

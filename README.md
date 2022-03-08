@@ -45,7 +45,8 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#commands-and-permissions">Commands and Permissions</a></li>
-        <li><a href="#configuration">Configuration</a></li>
+        <li><a href="#configuration - config.yml">Configuration</a></li>
+		<li><a href="#configuration - messages.yml">Configuration</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -93,9 +94,23 @@ To get the plugin running on your server follow these simple steps.
 * Command: `/sethome <name>`
 * Description: Set a home
 
-3. Permission: `vitalhome.homes.<number of allowed homes>`
+3. Permission: `vitalhome.delhome`
+
+* Command: `/delhome <name>`
+* Description: Delete a home
+
+4. Permission: `vitalhome.list`
+
+* Command: `/homes`
+* Description: List your homes
+
+5. Permission: `vitalhome.homes.<number of allowed homes>`
 
 * Description: Number of homes a player can set.
+
+6. Permission: `vitalhome.delay.bypass`
+
+* Description: Bypass delay
 
 ### Configuration - config.yml
 
