@@ -37,5 +37,4 @@ public abstract class HomeStorage {
 	public abstract void saveHome(@NotNull Player player, @NotNull String arg);
 
 	public abstract void clear(@NotNull String playerUUID, @NotNull String arg);
-
 }

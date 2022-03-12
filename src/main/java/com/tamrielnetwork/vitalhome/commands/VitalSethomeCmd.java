@@ -28,30 +28,27 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-public class VitalSethomeCmd implements CommandExecutor {
+public class VitalSethomeCmd
+		implements CommandExecutor {
 
 	private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
 	@Override
-	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+	                         @NotNull String[] args) {
 		if (Cmd.isArgsLengthNotEqualTo(sender, args, 1)) {
 			return false;
 		}
 		setHome(sender, args[0]);
 		return true;
-
 	}
 
 	private void setHome(@NotNull CommandSender sender, String arg) {
-
 		if (CmdSpec.isInvalidCmd(sender, "vitalhome.sethome", arg)) {
 			return;
 		}
 		Player senderPlayer = (Player) sender;
-
-		main.getHomeStorage().saveHome(senderPlayer, arg.toLowerCase());
-
+		main.getHomeStorage()
+		    .saveHome(senderPlayer, arg.toLowerCase());
 	}
-
 }

@@ -34,7 +34,8 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
-public class HomeStorageYaml extends HomeStorage {
+public class HomeStorageYaml
+		extends HomeStorage {
 
 	private static final String IOEXCEPTION = "VitalHome encountered an IOException while executing task";
 	private static final String HOME = "home.";
@@ -43,7 +44,6 @@ public class HomeStorageYaml extends HomeStorage {
 	private final FileConfiguration homeConf;
 
 	public HomeStorageYaml() {
-
 		homeFile = new File(main.getDataFolder(), "home.yml");
 		homeConf = YamlConfiguration.loadConfiguration(homeFile);
 		save();
@@ -51,9 +51,8 @@ public class HomeStorageYaml extends HomeStorage {
 
 	@Override
 	public Location loadHome(@NotNull Player player, @NotNull String arg) {
-
-		String playerUUID = player.getUniqueId().toString();
-
+		String playerUUID = player.getUniqueId()
+		                          .toString();
 		if (homeConf.getString(HOME + playerUUID + "." + arg + WORLD) == null) {
 			return null;
 		}
@@ -63,59 +62,54 @@ public class HomeStorageYaml extends HomeStorage {
 		int z = homeConf.getInt(HOME + playerUUID + "." + arg + ".z");
 		int yaw = homeConf.getInt(HOME + playerUUID + "." + arg + ".yaw");
 		int pitch = homeConf.getInt(HOME + playerUUID + "." + arg + ".pitch");
-
 		return new Location(world, x, y, z, yaw, pitch);
 	}
 
 	@Override
 	public Set<String> listHome(@NotNull Player player) {
-
-		String playerUUID = player.getUniqueId().toString();
+		String playerUUID = player.getUniqueId()
+		                          .toString();
 		Set<String> homes;
-
 		if (homeConf.getString(HOME + playerUUID) == null) {
 			return Collections.emptySet();
 		}
-		homes = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID)).getKeys(false);
-
+		homes = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
+		               .getKeys(false);
 		return homes;
 	}
 
 	@Override
 	public void saveHome(@NotNull Player player, @NotNull String arg) {
-
-		String playerUUID = player.getUniqueId().toString();
+		String playerUUID = player.getUniqueId()
+		                          .toString();
 		Location location = player.getLocation();
-
 		if (homeConf.getConfigurationSection(HOME + playerUUID) != null) {
-			@NotNull Set<String> keys = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID)).getKeys(false);
-
+			@NotNull Set<String> keys = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
+			                                   .getKeys(false);
 			if (keys.size() >= CmdSpec.getAllowedHomes(player, 1) && !keys.contains(arg)) {
 				Chat.sendMessage(player, "max-homes");
 				return;
 			}
 		}
 		Chat.sendMessage(player, "home-set");
-
 		clear(playerUUID, arg);
-
-		homeConf.set(HOME + playerUUID + "." + arg + WORLD, location.getWorld().getName());
+		homeConf.set(HOME + playerUUID + "." + arg + WORLD, location.getWorld()
+		                                                            .getName());
 		homeConf.set(HOME + playerUUID + "." + arg + ".x", (int) location.getX());
 		homeConf.set(HOME + playerUUID + "." + arg + ".y", (int) location.getY());
 		homeConf.set(HOME + playerUUID + "." + arg + ".z", (int) location.getZ());
 		homeConf.set(HOME + playerUUID + "." + arg + ".yaw", (int) location.getYaw());
 		homeConf.set(HOME + playerUUID + "." + arg + ".pitch", (int) location.getPitch());
-
 		save();
 	}
 
 	@Override
 	public void clear(@NotNull String playerUUID, @NotNull String arg) {
-
 		if (homeConf.getConfigurationSection(HOME + playerUUID) == null) {
 			return;
 		}
-		for (String key : Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID)).getKeys(false)) {
+		for (String key : Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
+		                         .getKeys(false)) {
 			if (Objects.equals(key, arg)) {
 				homeConf.set(HOME + playerUUID + "." + key, null);
 			}
@@ -124,12 +118,12 @@ public class HomeStorageYaml extends HomeStorage {
 	}
 
 	public void save() {
-
 		try {
 			homeConf.save(homeFile);
-		} catch (IOException ignored) {
-			Bukkit.getLogger().info(IOEXCEPTION);
+		}
+		catch (IOException ignored) {
+			Bukkit.getLogger()
+			      .info(IOEXCEPTION);
 		}
 	}
-
 }
