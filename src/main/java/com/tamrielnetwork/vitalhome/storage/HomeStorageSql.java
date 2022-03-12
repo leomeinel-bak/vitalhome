@@ -56,8 +56,7 @@ public class HomeStorageSql
 		int yaw = 0;
 		int pitch = 0;
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("SELECT * FROM ?" + "Home")) {
-			selectStatement.setString(1, Sql.getPrefix());
+		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Home")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null || !Objects.equals(
@@ -87,8 +86,7 @@ public class HomeStorageSql
 		                          .toString();
 		Set<String> homes = new HashSet<>();
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("SELECT * FROM ?" + "Home")) {
-			selectStatement.setString(1, Sql.getPrefix());
+		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Home")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null) {
@@ -114,9 +112,8 @@ public class HomeStorageSql
 		int homes = 0;
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
 		                                                   .prepareStatement(
-				                                                   "SELECT COUNT(*) FROM ?" + "Home WHERE `UUID`=?")) {
-			selectStatement.setString(1, Sql.getPrefix());
-			selectStatement.setString(2, playerUUID);
+				                                                   "SELECT COUNT(*) FROM " + Sql.getPrefix() + "Home WHERE `UUID`=?")) {
+			selectStatement.setString(1, playerUUID);
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				rs.next();
 				homes = rs.getInt(1);
@@ -133,18 +130,17 @@ public class HomeStorageSql
 		Chat.sendMessage(player, "home-set");
 		clear(playerUUID, arg);
 		try (PreparedStatement insertStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("INSERT INTO ?"
+		                                                   .prepareStatement("INSERT INTO " + Sql.getPrefix()
 		                                                                     + "Home (`UUID`, `Home`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
-			insertStatement.setString(1, Sql.getPrefix());
-			insertStatement.setString(2, playerUUID);
-			insertStatement.setString(3, arg);
-			insertStatement.setString(4, location.getWorld()
+			insertStatement.setString(1, playerUUID);
+			insertStatement.setString(2, arg);
+			insertStatement.setString(3, location.getWorld()
 			                                     .getName());
-			insertStatement.setInt(5, (int) location.getX());
-			insertStatement.setInt(6, (int) location.getY());
-			insertStatement.setInt(7, (int) location.getZ());
-			insertStatement.setInt(8, (int) location.getYaw());
-			insertStatement.setInt(9, (int) location.getPitch());
+			insertStatement.setInt(4, (int) location.getX());
+			insertStatement.setInt(5, (int) location.getY());
+			insertStatement.setInt(6, (int) location.getZ());
+			insertStatement.setInt(7, (int) location.getYaw());
+			insertStatement.setInt(8, (int) location.getPitch());
 			insertStatement.executeUpdate();
 		}
 		catch (SQLException ignored) {
@@ -156,11 +152,10 @@ public class HomeStorageSql
 	@Override
 	public void clear(@NotNull String playerUUID, @NotNull String arg) {
 		try (PreparedStatement deleteStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("DELETE FROM ?" + "Home WHERE `UUID`=?"
+		                                                   .prepareStatement("DELETE FROM " + Sql.getPrefix() + "Home WHERE `UUID`=?"
 		                                                                     + " AND `Home`=?")) {
-			deleteStatement.setString(1, Sql.getPrefix());
-			deleteStatement.setString(2, playerUUID);
-			deleteStatement.setString(3, arg);
+			deleteStatement.setString(1, playerUUID);
+			deleteStatement.setString(2, arg);
 			deleteStatement.executeUpdate();
 		}
 		catch (SQLException ignored) {
