@@ -61,8 +61,8 @@ public class VitalDelHomeCmd
 	}
 
 	@Override
-	public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias,
-	                                            @NotNull String[] args) {
+	public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
+	                                            @NotNull String alias, @NotNull String[] args) {
 		Player senderPlayer = (Player) sender;
 		if (main.getHomeStorage()
 		        .listHome(senderPlayer)

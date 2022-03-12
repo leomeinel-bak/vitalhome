@@ -56,7 +56,8 @@ public class HomeStorageSql
 		int yaw = 0;
 		int pitch = 0;
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Home")) {
+		                                                   .prepareStatement(
+				                                                   "SELECT * FROM " + Sql.getPrefix() + "Home")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null || !Objects.equals(
@@ -86,7 +87,8 @@ public class HomeStorageSql
 		                          .toString();
 		Set<String> homes = new HashSet<>();
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Home")) {
+		                                                   .prepareStatement(
+				                                                   "SELECT * FROM " + Sql.getPrefix() + "Home")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null) {
@@ -111,8 +113,9 @@ public class HomeStorageSql
 		Location location = player.getLocation();
 		int homes = 0;
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement(
-				                                                   "SELECT COUNT(*) FROM " + Sql.getPrefix() + "Home WHERE `UUID`=" + "'" + playerUUID + "'")) {
+		                                                   .prepareStatement("SELECT COUNT(*) FROM " + Sql.getPrefix()
+		                                                                     + "Home WHERE `UUID`=" + "'" + playerUUID
+		                                                                     + "'")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				rs.next();
 				homes = rs.getInt(1);
@@ -129,8 +132,8 @@ public class HomeStorageSql
 		Chat.sendMessage(player, "home-set");
 		clear(playerUUID, arg);
 		try (PreparedStatement insertStatement = SqlManager.getConnection()
-		                                                   .prepareStatement(
-				                                                   "INSERT INTO " + Sql.getPrefix() + "Home (`UUID`, `Home`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+		                                                   .prepareStatement("INSERT INTO " + Sql.getPrefix()
+		                                                                     + "Home (`UUID`, `Home`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
 			insertStatement.setString(1, playerUUID);
 			insertStatement.setString(2, arg);
 			insertStatement.setString(3, location.getWorld()
@@ -151,8 +154,9 @@ public class HomeStorageSql
 	@Override
 	public void clear(@NotNull String playerUUID, @NotNull String arg) {
 		try (PreparedStatement deleteStatement = SqlManager.getConnection()
-		                                                   .prepareStatement(
-				                                                   "DELETE FROM " + Sql.getPrefix() + "Home WHERE `UUID`=" + "'" + playerUUID + "' AND `Home`=" + "'" + arg + "'")) {
+		                                                   .prepareStatement("DELETE FROM " + Sql.getPrefix()
+		                                                                     + "Home WHERE `UUID`=" + "'" + playerUUID
+		                                                                     + "' AND `Home`=" + "'" + arg + "'")) {
 			deleteStatement.executeUpdate();
 		}
 		catch (SQLException ignored) {

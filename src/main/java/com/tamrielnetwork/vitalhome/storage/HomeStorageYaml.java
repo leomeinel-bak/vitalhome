@@ -56,7 +56,8 @@ public class HomeStorageYaml
 		if (homeConf.getString(HOME + playerUUID + "." + arg + WORLD) == null) {
 			return null;
 		}
-		World world = Bukkit.getWorld(Objects.requireNonNull(homeConf.getString(HOME + playerUUID + "." + arg + WORLD)));
+		World world = Bukkit.getWorld(
+				Objects.requireNonNull(homeConf.getString(HOME + playerUUID + "." + arg + WORLD)));
 		int x = homeConf.getInt(HOME + playerUUID + "." + arg + ".x");
 		int y = homeConf.getInt(HOME + playerUUID + "." + arg + ".y");
 		int z = homeConf.getInt(HOME + playerUUID + "." + arg + ".z");
