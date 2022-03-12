@@ -53,7 +53,8 @@ public class SqlManager {
 		                    .getString("mysql.password");
 		enableConnection();
 		try (PreparedStatement statementSpawnTable = SqlManager.getConnection()
-		                                                       .prepareStatement("CREATE TABLE IF NOT EXISTS " + Sql.getPrefix() + "Home (`UUID` TEXT, `Home` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)")) {
+		                                                       .prepareStatement(
+				                                                       "CREATE TABLE IF NOT EXISTS " + Sql.getPrefix() + "Home (`UUID` TEXT, `Home` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)")) {
 			statementSpawnTable.executeUpdate();
 		}
 		catch (SQLException ignored) {
@@ -75,7 +76,8 @@ public class SqlManager {
 			if (getConnection() != null && !getConnection().isClosed()) {
 				return;
 			}
-			setConnection(DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password));
+			setConnection(
+					DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password));
 			main.getLogger()
 			    .info("Connected successfully with the database!");
 		}
