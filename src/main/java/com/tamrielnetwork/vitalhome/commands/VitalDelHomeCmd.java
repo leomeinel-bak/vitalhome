@@ -49,7 +49,7 @@ public class VitalDelHomeCmd
 	}
 
 	private void delHome(@NotNull CommandSender sender, String arg) {
-		if (CmdSpec.isInvalidCmd(sender, "vitalhome.delhome", arg)) {
+		if (CmdSpec.isInvalidCmd(sender, "vitalhome.delhome")) {
 			return;
 		}
 		Player senderPlayer = (Player) sender;

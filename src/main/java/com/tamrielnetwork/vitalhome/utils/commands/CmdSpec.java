@@ -73,16 +73,6 @@ public class CmdSpec {
 		}
 	}
 
-	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm, @NotNull String arg) {
-		if (Cmd.isInvalidSender(sender)) {
-			return true;
-		}
-		if (Cmd.isNotPermitted(sender, perm)) {
-			return true;
-		}
-		return isInvalidName(sender, arg);
-	}
-
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
 		if (Cmd.isInvalidSender(sender)) {
 			return true;
@@ -109,14 +99,5 @@ public class CmdSpec {
 			}
 		}
 		return Collections.max(values);
-	}
-
-	private static boolean isInvalidName(@NotNull CommandSender sender, @NotNull String arg) {
-		if (!arg.toLowerCase()
-		        .matches("[a-z0-9]{1,16}")) {
-			Chat.sendMessage(sender, "invalid-name");
-			return true;
-		}
-		return false;
 	}
 }
