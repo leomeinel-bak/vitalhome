@@ -116,7 +116,7 @@ public class HomeStorageSql
 		                                                   .prepareStatement(
 				                                                   "SELECT COUNT(*) FROM ?" + "Home WHERE `UUID`=?")) {
 			selectStatement.setString(1, Sql.getPrefix());
-			selectStatement.setString(2, "'" + playerUUID + "'");
+			selectStatement.setString(2, playerUUID);
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				rs.next();
 				homes = rs.getInt(1);
@@ -159,8 +159,8 @@ public class HomeStorageSql
 		                                                   .prepareStatement("DELETE FROM ?" + "Home WHERE `UUID`=?"
 		                                                                     + " AND `Home`=?")) {
 			deleteStatement.setString(1, Sql.getPrefix());
-			deleteStatement.setString(2, "'" + playerUUID + "'");
-			deleteStatement.setString(3, "'" + arg + "'");
+			deleteStatement.setString(2, playerUUID);
+			deleteStatement.setString(3, arg);
 			deleteStatement.executeUpdate();
 		}
 		catch (SQLException ignored) {
