@@ -56,7 +56,8 @@ public class HomeStorageSql
 		int yaw = 0;
 		int pitch = 0;
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Home")) {
+		                                                   .prepareStatement(
+				                                                   "SELECT * FROM " + Sql.getPrefix() + "Home")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null || !Objects.equals(
@@ -86,7 +87,8 @@ public class HomeStorageSql
 		                          .toString();
 		Set<String> homes = new HashSet<>();
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Home")) {
+		                                                   .prepareStatement(
+				                                                   "SELECT * FROM " + Sql.getPrefix() + "Home")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null) {
@@ -111,8 +113,8 @@ public class HomeStorageSql
 		Location location = player.getLocation();
 		int homes = 0;
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement(
-				                                                   "SELECT COUNT(*) FROM " + Sql.getPrefix() + "Home WHERE `UUID`=?")) {
+		                                                   .prepareStatement("SELECT COUNT(*) FROM " + Sql.getPrefix()
+		                                                                     + "Home WHERE `UUID`=?")) {
 			selectStatement.setString(1, playerUUID);
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				rs.next();
@@ -152,7 +154,8 @@ public class HomeStorageSql
 	@Override
 	public void clear(@NotNull String playerUUID, @NotNull String arg) {
 		try (PreparedStatement deleteStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("DELETE FROM " + Sql.getPrefix() + "Home WHERE `UUID`=?"
+		                                                   .prepareStatement("DELETE FROM " + Sql.getPrefix()
+		                                                                     + "Home WHERE `UUID`=?"
 		                                                                     + " AND `Home`=?")) {
 			deleteStatement.setString(1, playerUUID);
 			deleteStatement.setString(2, arg);
