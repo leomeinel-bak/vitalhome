@@ -74,17 +74,11 @@ public class CmdSpec {
 	}
 
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
-		if (Cmd.isInvalidSender(sender)) {
-			return true;
-		}
-		return Cmd.isNotPermitted(sender, perm);
+		return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
 	}
 
 	public static boolean isInvalidLocation(Location location) {
-		if (location == null) {
-			return true;
-		}
-		return location.getWorld() == null;
+		return location == null || location.getWorld() == null;
 	}
 
 	public static int getAllowedHomes(@NotNull Player player, int defaultValue) {
