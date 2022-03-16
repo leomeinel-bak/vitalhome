@@ -44,7 +44,7 @@ public class VitalSethomeCmd
 	}
 
 	private void setHome(@NotNull CommandSender sender, String arg) {
-		if (CmdSpec.isInvalidCmd(sender, "vitalhome.sethome")) {
+		if (CmdSpec.isInvalidCmd(sender, arg, "vitalhome.sethome")) {
 			return;
 		}
 		Player senderPlayer = (Player) sender;

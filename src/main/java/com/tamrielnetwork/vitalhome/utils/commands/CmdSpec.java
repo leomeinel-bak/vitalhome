@@ -73,12 +73,24 @@ public class CmdSpec {
 		}
 	}
 
+	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String arg, @NotNull String perm) {
+		return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm) || isInvalidHome(sender, arg);
+	}
+
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
 		return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
 	}
 
 	public static boolean isInvalidLocation(Location location) {
 		return location == null || location.getWorld() == null;
+	}
+
+	private static boolean isInvalidHome(@NotNull CommandSender sender, @NotNull String arg) {
+		if (arg.length() > 64) {
+			Chat.sendMessage(sender, "invalid-home");
+			return true;
+		}
+		return false;
 	}
 
 	public static int getAllowedHomes(@NotNull Player player, int defaultValue) {
