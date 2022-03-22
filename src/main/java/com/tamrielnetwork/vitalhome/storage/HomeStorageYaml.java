@@ -115,10 +115,9 @@ public class HomeStorageYaml
 				homeConf.set(HOME + playerUUID + "." + key, null);
 			}
 		}
-		save();
 	}
 
-	public void save() {
+	private void save() {
 		try {
 			homeConf.save(homeFile);
 		}
