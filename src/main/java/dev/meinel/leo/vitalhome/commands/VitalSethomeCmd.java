@@ -16,25 +16,20 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalhome.commands;
+package dev.meinel.leo.vitalhome.commands;
 
-import com.tamrielnetwork.vitalhome.VitalHome;
-import com.tamrielnetwork.vitalhome.utils.Chat;
-import com.tamrielnetwork.vitalhome.utils.commands.Cmd;
-import com.tamrielnetwork.vitalhome.utils.commands.CmdSpec;
+import dev.meinel.leo.vitalhome.VitalHome;
+import dev.meinel.leo.vitalhome.utils.commands.Cmd;
+import dev.meinel.leo.vitalhome.utils.commands.CmdSpec;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class VitalDelHomeCmd
-		implements TabExecutor {
+public class VitalSethomeCmd
+		implements CommandExecutor {
 
 	private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
@@ -44,32 +39,16 @@ public class VitalDelHomeCmd
 		if (Cmd.isArgsLengthNotEqualTo(sender, args, 1)) {
 			return false;
 		}
-		delHome(sender, args[0]);
+		setHome(sender, args[0]);
 		return true;
 	}
 
-	private void delHome(@NotNull CommandSender sender, String arg) {
-		if (CmdSpec.isInvalidCmd(sender, arg, "vitalhome.delhome")) {
+	private void setHome(@NotNull CommandSender sender, String arg) {
+		if (CmdSpec.isInvalidCmd(sender, arg, "vitalhome.sethome")) {
 			return;
 		}
 		Player senderPlayer = (Player) sender;
-		String playerUUID = senderPlayer.getUniqueId()
-		                                .toString();
 		main.getHomeStorage()
-		    .clear(playerUUID, arg.toLowerCase());
-		Chat.sendMessage(sender, "home-removed");
-	}
-
-	@Override
-	public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
-	                                            @NotNull String alias, @NotNull String[] args) {
-		Player senderPlayer = (Player) sender;
-		if (main.getHomeStorage()
-		        .listHome(senderPlayer)
-		        .isEmpty()) {
-			return null;
-		}
-		return new ArrayList<>(main.getHomeStorage()
-		                           .listHome(senderPlayer));
+		    .saveHome(senderPlayer, arg.toLowerCase());
 	}
 }

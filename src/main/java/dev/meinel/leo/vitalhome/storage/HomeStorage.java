@@ -16,21 +16,25 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalhome.utils.sql;
+package dev.meinel.leo.vitalhome.storage;
 
-import com.tamrielnetwork.vitalhome.VitalHome;
+import dev.meinel.leo.vitalhome.VitalHome;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
-public class Sql {
+import java.util.Set;
 
-	private static final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
+public abstract class HomeStorage {
 
-	private Sql() {
-		throw new IllegalStateException("Utility class");
-	}
+	protected final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
-	public static String getPrefix() {
-		return main.getConfig()
-		           .getString("mysql.prefix");
-	}
+	public abstract Location loadHome(@NotNull Player player, @NotNull String arg);
+
+	public abstract Set<String> listHome(@NotNull Player player);
+
+	public abstract void saveHome(@NotNull Player player, @NotNull String arg);
+
+	public abstract void clear(@NotNull String playerUUID, @NotNull String arg);
 }

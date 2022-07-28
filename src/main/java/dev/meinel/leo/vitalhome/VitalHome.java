@@ -16,16 +16,16 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalhome;
+package dev.meinel.leo.vitalhome;
 
-import com.tamrielnetwork.vitalhome.commands.VitalDelHomeCmd;
-import com.tamrielnetwork.vitalhome.commands.VitalHomeCmd;
-import com.tamrielnetwork.vitalhome.commands.VitalHomesCmd;
-import com.tamrielnetwork.vitalhome.commands.VitalSethomeCmd;
-import com.tamrielnetwork.vitalhome.files.Messages;
-import com.tamrielnetwork.vitalhome.storage.HomeStorage;
-import com.tamrielnetwork.vitalhome.storage.HomeStorageSql;
-import com.tamrielnetwork.vitalhome.storage.HomeStorageYaml;
+import dev.meinel.leo.vitalhome.commands.VitalDelHomeCmd;
+import dev.meinel.leo.vitalhome.commands.VitalHomeCmd;
+import dev.meinel.leo.vitalhome.commands.VitalHomesCmd;
+import dev.meinel.leo.vitalhome.commands.VitalSethomeCmd;
+import dev.meinel.leo.vitalhome.files.Messages;
+import dev.meinel.leo.vitalhome.storage.HomeStorage;
+import dev.meinel.leo.vitalhome.storage.HomeStorageSql;
+import dev.meinel.leo.vitalhome.storage.HomeStorageYaml;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -1,6 +1,6 @@
 name: VitalHome
 version: @version@
-main: com.tamrielnetwork.vitalhome.VitalHome
+main: dev.meinel.leo.vitalhome.VitalHome
 api-version: 1.17
 authors: [ Leopold Meinel ]
 description: Gives players the ability to set homes and teleport to them.

@@ -16,34 +16,21 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalhome.files;
+package dev.meinel.leo.vitalhome.utils.sql;
 
-import com.tamrielnetwork.vitalhome.VitalHome;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import dev.meinel.leo.vitalhome.VitalHome;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+public class Sql {
 
-public class Messages {
+	private static final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
-	private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
-	private final File messagesFile;
-	private final FileConfiguration messagesConf;
-
-	public Messages() {
-		messagesFile = new File(main.getDataFolder(), "messages.yml");
-		saveMessagesFile();
-		messagesConf = YamlConfiguration.loadConfiguration(messagesFile);
+	private Sql() {
+		throw new IllegalStateException("Utility class");
 	}
 
-	private void saveMessagesFile() {
-		if (!messagesFile.exists()) {
-			main.saveResource("messages.yml", false);
-		}
-	}
-
-	public FileConfiguration getMessagesConf() {
-		return messagesConf;
+	public static String getPrefix() {
+		return main.getConfig()
+		           .getString("mysql.prefix");
 	}
 }

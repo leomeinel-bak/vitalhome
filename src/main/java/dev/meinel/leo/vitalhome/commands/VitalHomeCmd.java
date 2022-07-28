@@ -16,11 +16,11 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalhome.commands;
+package dev.meinel.leo.vitalhome.commands;
 
-import com.tamrielnetwork.vitalhome.VitalHome;
-import com.tamrielnetwork.vitalhome.utils.commands.Cmd;
-import com.tamrielnetwork.vitalhome.utils.commands.CmdSpec;
+import dev.meinel.leo.vitalhome.VitalHome;
+import dev.meinel.leo.vitalhome.utils.commands.Cmd;
+import dev.meinel.leo.vitalhome.utils.commands.CmdSpec;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

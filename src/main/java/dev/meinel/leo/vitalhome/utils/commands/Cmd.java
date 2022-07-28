@@ -16,9 +16,9 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalhome.utils.commands;
+package dev.meinel.leo.vitalhome.utils.commands;
 
-import com.tamrielnetwork.vitalhome.utils.Chat;
+import dev.meinel.leo.vitalhome.utils.Chat;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

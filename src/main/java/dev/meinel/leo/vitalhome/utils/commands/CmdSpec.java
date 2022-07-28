@@ -16,10 +16,10 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalhome.utils.commands;
+package dev.meinel.leo.vitalhome.utils.commands;
 
-import com.tamrielnetwork.vitalhome.VitalHome;
-import com.tamrielnetwork.vitalhome.utils.Chat;
+import dev.meinel.leo.vitalhome.VitalHome;
+import dev.meinel.leo.vitalhome.utils.Chat;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
