@@ -10,7 +10,7 @@
 <!--suppress ALL -->
 <br />
 <p align="center">
-  <a href="https://github.com/TamrielNetwork/VitalHome">
+  <a href="https://github.com/LeoMeinel/VitalHome">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -19,14 +19,14 @@
   <p align="center">
     Set homes on Spigot and Paper
     <br />
-    <a href="https://github.com/TamrielNetwork/VitalHome"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/LeoMeinel/VitalHome"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/TamrielNetwork/VitalHome">View Demo</a>
+    <a href="https://github.com/LeoMeinel/VitalHome">View Demo</a>
     ·
-    <a href="https://github.com/TamrielNetwork/VitalHome/issues">Report Bug</a>
+    <a href="https://github.com/LeoMeinel/VitalHome/issues">Report Bug</a>
     ·
-    <a href="https://github.com/TamrielNetwork/VitalHome/issues">Request Feature</a>
+    <a href="https://github.com/LeoMeinel/VitalHome/issues">Request Feature</a>
   </p>
 
 <!-- TABLE OF CONTENTS -->
@@ -152,7 +152,7 @@ no-homes: "&cYou don't have any homes!"
 
 ## Roadmap
 
-See the [open issues](https://github.com/TamrielNetwork/VitalHome/issues) for a list of proposed features (and known
+See the [open issues](https://github.com/LeoMeinel/VitalHome/issues) for a list of proposed features (and known
 issues).
 
 <!-- CONTRIBUTING -->
@@ -182,7 +182,7 @@ Leopold Meinel - [@TamrielN](https://twitter.com/TamrielN) - Twitter
 
 Leopold Meinel - [contact@tamriel.me](mailto:contact@tamriel.me) - eMail
 
-Project Link - [VitalHome](https://github.com/TamrielNetwork/VitalHome) - GitHub
+Project Link - [VitalHome](https://github.com/LeoMeinel/VitalHome) - GitHub
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -192,26 +192,26 @@ Project Link - [VitalHome](https://github.com/TamrielNetwork/VitalHome) - GitHub
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[contributors-shield]: https://img.shields.io/github/contributors-anon/TamrielNetwork/VitalHome?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors-anon/LeoMeinel/VitalHome?style=for-the-badge
 
-[contributors-url]: https://github.com/TamrielNetwork/VitalHome/graphs/contributors
+[contributors-url]: https://github.com/LeoMeinel/VitalHome/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/TamrielNetwork/VitalHome?label=Forks&style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/LeoMeinel/VitalHome?label=Forks&style=for-the-badge
 
-[forks-url]: https://github.com/TamrielNetwork/VitalHome/network/members
+[forks-url]: https://github.com/LeoMeinel/VitalHome/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/TamrielNetwork/VitalHome?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/LeoMeinel/VitalHome?style=for-the-badge
 
-[stars-url]: https://github.com/TamrielNetwork/VitalHome/stargazers
+[stars-url]: https://github.com/LeoMeinel/VitalHome/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/TamrielNetwork/VitalHome?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/LeoMeinel/VitalHome?style=for-the-badge
 
-[issues-url]: https://github.com/TamrielNetwork/VitalHome/issues
+[issues-url]: https://github.com/LeoMeinel/VitalHome/issues
 
-[license-shield]: https://img.shields.io/github/license/TamrielNetwork/VitalHome?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/LeoMeinel/VitalHome?style=for-the-badge
 
-[license-url]: https://github.com/TamrielNetwork/VitalHome/blob/main/LICENSE
+[license-url]: https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
 
-[quality-shield]: https://img.shields.io/codefactor/grade/github/TamrielNetwork/VitalHome?style=for-the-badge
+[quality-shield]: https://img.shields.io/codefactor/grade/github/LeoMeinel/VitalHome?style=for-the-badge
 
-[quality-url]: https://www.codefactor.io/repository/github/TamrielNetwork/VitalHome
+[quality-url]: https://www.codefactor.io/repository/github/LeoMeinel/VitalHome
