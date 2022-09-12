@@ -1,4 +1,5 @@
 <!-- PROJECT SHIELDS -->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -69,12 +70,12 @@ This plugin is perfect for any server wanting their players to have home to tele
 
 ### Features
 
-* Set homes and teleport to them.
+- Set homes and teleport to them.
 
 ### Built With
 
-* [Gradle 7](https://docs.gradle.org/7.4/release-notes.html)
-* [OpenJDK 17](https://openjdk.java.net/projects/jdk/17/)
+- [Gradle 7](https://docs.gradle.org/7.4/release-notes.html)
+- [OpenJDK 17](https://openjdk.java.net/projects/jdk/17/)
 
 <!-- GETTING STARTED -->
 
@@ -86,31 +87,31 @@ To get the plugin running on your server follow these simple steps.
 
 1. Permission: `vitalhome.home`
 
-* Command: `/home <name>`
-* Description: Teleport home
+- Command: `/home <name>`
+- Description: Teleport home
 
 2. Permission: `vitalhome.sethome`
 
-* Command: `/sethome <name>`
-* Description: Set a home
+- Command: `/sethome <name>`
+- Description: Set a home
 
 3. Permission: `vitalhome.delhome`
 
-* Command: `/delhome <name>`
-* Description: Delete a home
+- Command: `/delhome <name>`
+- Description: Delete a home
 
 4. Permission: `vitalhome.list`
 
-* Command: `/homes`
-* Description: List your homes
+- Command: `/homes`
+- Description: List your homes
 
 5. Permission: `vitalhome.homes.<number of allowed homes>`
 
-* Description: Number of homes a player can set.
+- Description: Number of homes a player can set.
 
 6. Permission: `vitalhome.delay.bypass`
 
-* Description: Bypass delay
+- Description: Bypass delay
 
 ### Configuration - config.yml
 
@@ -186,30 +187,19 @@ Project Link - [VitalHome](https://github.com/LeoMeinel/VitalHome) - GitHub
 
 ### Acknowledgements
 
-* [README.md - othneildrew](https://github.com/othneildrew/Best-README-Template)
+- [README.md - othneildrew](https://github.com/othneildrew/Best-README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [contributors-shield]: https://img.shields.io/github/contributors-anon/LeoMeinel/VitalHome?style=for-the-badge
-
 [contributors-url]: https://github.com/LeoMeinel/VitalHome/graphs/contributors
-
 [forks-shield]: https://img.shields.io/github/forks/LeoMeinel/VitalHome?label=Forks&style=for-the-badge
-
 [forks-url]: https://github.com/LeoMeinel/VitalHome/network/members
-
 [stars-shield]: https://img.shields.io/github/stars/LeoMeinel/VitalHome?style=for-the-badge
-
 [stars-url]: https://github.com/LeoMeinel/VitalHome/stargazers
-
 [issues-shield]: https://img.shields.io/github/issues/LeoMeinel/VitalHome?style=for-the-badge
-
 [issues-url]: https://github.com/LeoMeinel/VitalHome/issues
-
 [license-shield]: https://img.shields.io/github/license/LeoMeinel/VitalHome?style=for-the-badge
-
 [license-url]: https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
-
 [quality-shield]: https://img.shields.io/codefactor/grade/github/LeoMeinel/VitalHome?style=for-the-badge
-
 [quality-url]: https://www.codefactor.io/repository/github/LeoMeinel/VitalHome

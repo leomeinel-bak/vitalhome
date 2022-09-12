@@ -1,19 +1,11 @@
 /*
- * VitalHome is a Spigot Plugin that gives players the ability to set homes and teleport to them.
- * Copyright © 2022 Leopold Meinel & contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
+ * File: HomeStorageYaml.java
+ * Author: Leopold Meinel (leo@meinel.dev)
+ * -----
+ * Copyright (c) 2022 Leopold Meinel & contributors
+ * SPDX ID: GPL-3.0-or-later
+ * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
+ * -----
  */
 
 package dev.meinel.leo.vitalhome.storage;
@@ -52,7 +44,7 @@ public class HomeStorageYaml
 	@Override
 	public Location loadHome(@NotNull Player player, @NotNull String arg) {
 		String playerUUID = player.getUniqueId()
-		                          .toString();
+				.toString();
 		if (homeConf.getString(HOME + playerUUID + "." + arg + WORLD) == null) {
 			return null;
 		}
@@ -69,24 +61,25 @@ public class HomeStorageYaml
 	@Override
 	public Set<String> listHome(@NotNull Player player) {
 		String playerUUID = player.getUniqueId()
-		                          .toString();
+				.toString();
 		Set<String> homes;
 		if (homeConf.getString(HOME + playerUUID) == null) {
 			return Collections.emptySet();
 		}
 		homes = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
-		               .getKeys(false);
+				.getKeys(false);
 		return homes;
 	}
 
 	@Override
 	public void saveHome(@NotNull Player player, @NotNull String arg) {
 		String playerUUID = player.getUniqueId()
-		                          .toString();
+				.toString();
 		Location location = player.getLocation();
 		if (homeConf.getConfigurationSection(HOME + playerUUID) != null) {
-			@NotNull Set<String> keys = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
-			                                   .getKeys(false);
+			@NotNull
+			Set<String> keys = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
+					.getKeys(false);
 			if (keys.size() >= CmdSpec.getAllowedHomes(player, 1) && !keys.contains(arg)) {
 				Chat.sendMessage(player, "max-homes");
 				return;
@@ -95,7 +88,7 @@ public class HomeStorageYaml
 		Chat.sendMessage(player, "home-set");
 		clear(playerUUID, arg);
 		homeConf.set(HOME + playerUUID + "." + arg + WORLD, location.getWorld()
-		                                                            .getName());
+				.getName());
 		homeConf.set(HOME + playerUUID + "." + arg + ".x", (int) location.getX());
 		homeConf.set(HOME + playerUUID + "." + arg + ".y", (int) location.getY());
 		homeConf.set(HOME + playerUUID + "." + arg + ".z", (int) location.getZ());
@@ -110,7 +103,7 @@ public class HomeStorageYaml
 			return;
 		}
 		for (String key : Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
-		                         .getKeys(false)) {
+				.getKeys(false)) {
 			if (Objects.equals(key, arg)) {
 				homeConf.set(HOME + playerUUID + "." + key, null);
 			}
@@ -120,10 +113,9 @@ public class HomeStorageYaml
 	private void save() {
 		try {
 			homeConf.save(homeFile);
-		}
-		catch (IOException ignored) {
+		} catch (IOException ignored) {
 			Bukkit.getLogger()
-			      .info(IOEXCEPTION);
+					.info(IOEXCEPTION);
 		}
 	}
 }

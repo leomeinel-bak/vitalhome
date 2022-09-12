@@ -1,19 +1,11 @@
 /*
- * VitalHome is a Spigot Plugin that gives players the ability to set homes and teleport to them.
- * Copyright © 2022 Leopold Meinel & contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
+ * File: CmdSpec.java
+ * Author: Leopold Meinel (leo@meinel.dev)
+ * -----
+ * Copyright (c) 2022 Leopold Meinel & contributors
+ * SPDX ID: GPL-3.0-or-later
+ * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
+ * -----
  */
 
 package dev.meinel.leo.vitalhome.utils.commands;
@@ -52,7 +44,7 @@ public class CmdSpec {
 			}
 			onActiveDelay.add(senderPlayer.getUniqueId());
 			String timeRemaining = String.valueOf(main.getConfig()
-			                                          .getLong("delay.time"));
+					.getLong("delay.time"));
 			Chat.sendMessage(senderPlayer, Map.of("%countdown%", timeRemaining), "countdown");
 			new BukkitRunnable() {
 
@@ -66,9 +58,8 @@ public class CmdSpec {
 					onActiveDelay.remove(senderPlayer.getUniqueId());
 				}
 			}.runTaskLater(main, (main.getConfig()
-			                          .getLong("delay.time") * 20L));
-		}
-		else {
+					.getLong("delay.time") * 20L));
+		} else {
 			senderPlayer.teleport(location);
 		}
 	}
@@ -99,7 +90,7 @@ public class CmdSpec {
 		String permissionPrefix = "vitalhome.homes.";
 		for (PermissionAttachmentInfo attachmentInfo : player.getEffectivePermissions()) {
 			if (attachmentInfo.getPermission()
-			                  .startsWith(permissionPrefix)) {
+					.startsWith(permissionPrefix)) {
 				String permission = attachmentInfo.getPermission();
 				values.add(Integer.parseInt(permission.substring(permission.lastIndexOf(".") + 1)));
 			}
