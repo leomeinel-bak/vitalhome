@@ -21,26 +21,26 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 public class VitalSethomeCmd
-		implements CommandExecutor {
+        implements CommandExecutor {
 
-	private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
+    private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
-	@Override
-	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
-			@NotNull String[] args) {
-		if (Cmd.isArgsLengthNotEqualTo(sender, args, 1)) {
-			return false;
-		}
-		setHome(sender, args[0]);
-		return true;
-	}
+    @Override
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+            @NotNull String[] args) {
+        if (Cmd.isArgsLengthNotEqualTo(sender, args, 1)) {
+            return false;
+        }
+        setHome(sender, args[0]);
+        return true;
+    }
 
-	private void setHome(@NotNull CommandSender sender, String arg) {
-		if (CmdSpec.isInvalidCmd(sender, arg, "vitalhome.sethome")) {
-			return;
-		}
-		Player senderPlayer = (Player) sender;
-		main.getHomeStorage()
-				.saveHome(senderPlayer, arg.toLowerCase());
-	}
+    private void setHome(@NotNull CommandSender sender, String arg) {
+        if (CmdSpec.isInvalidCmd(sender, arg, "vitalhome.sethome")) {
+            return;
+        }
+        Player senderPlayer = (Player) sender;
+        main.getHomeStorage()
+                .saveHome(senderPlayer, arg.toLowerCase());
+    }
 }

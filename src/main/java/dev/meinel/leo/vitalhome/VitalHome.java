@@ -24,67 +24,67 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Objects;
 
 public final class VitalHome
-		extends JavaPlugin {
+        extends JavaPlugin {
 
-	private HomeStorage homeStorage;
-	private Messages messages;
+    private HomeStorage homeStorage;
+    private Messages messages;
 
-	@Override
-	public void onEnable() {
-		registerCommands();
-		saveDefaultConfig();
-		setupStorage();
-		messages = new Messages();
-		Bukkit.getLogger()
-				.info("VitalHome v" + this.getDescription()
-						.getVersion() + " enabled");
-		Bukkit.getLogger()
-				.info("Copyright (C) 2022 Leopold Meinel");
-		Bukkit.getLogger()
-				.info("This program comes with ABSOLUTELY NO WARRANTY!");
-		Bukkit.getLogger()
-				.info("This is free software, and you are welcome to redistribute it under certain conditions.");
-		Bukkit.getLogger()
-				.info("See https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE for more details.");
-	}
+    @Override
+    public void onEnable() {
+        registerCommands();
+        saveDefaultConfig();
+        setupStorage();
+        messages = new Messages();
+        Bukkit.getLogger()
+                .info("VitalHome v" + this.getDescription()
+                        .getVersion() + " enabled");
+        Bukkit.getLogger()
+                .info("Copyright (C) 2022 Leopold Meinel");
+        Bukkit.getLogger()
+                .info("This program comes with ABSOLUTELY NO WARRANTY!");
+        Bukkit.getLogger()
+                .info("This is free software, and you are welcome to redistribute it under certain conditions.");
+        Bukkit.getLogger()
+                .info("See https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE for more details.");
+    }
 
-	@Override
-	public void onDisable() {
-		Bukkit.getLogger()
-				.info("VitalHome v" + this.getDescription()
-						.getVersion() + " disabled");
-	}
+    @Override
+    public void onDisable() {
+        Bukkit.getLogger()
+                .info("VitalHome v" + this.getDescription()
+                        .getVersion() + " disabled");
+    }
 
-	private void setupStorage() {
-		String storageSystem = getConfig().getString("storage-system");
-		if (Objects.requireNonNull(storageSystem)
-				.equalsIgnoreCase("mysql")) {
-			this.homeStorage = new HomeStorageSql();
-		} else {
-			this.homeStorage = new HomeStorageYaml();
-		}
-	}
+    private void setupStorage() {
+        String storageSystem = getConfig().getString("storage-system");
+        if (Objects.requireNonNull(storageSystem)
+                .equalsIgnoreCase("mysql")) {
+            this.homeStorage = new HomeStorageSql();
+        } else {
+            this.homeStorage = new HomeStorageYaml();
+        }
+    }
 
-	private void registerCommands() {
-		Objects.requireNonNull(getCommand("home"))
-				.setExecutor(new VitalHomeCmd());
-		Objects.requireNonNull(getCommand("home"))
-				.setTabCompleter(new VitalHomeCmd());
-		Objects.requireNonNull(getCommand("homes"))
-				.setExecutor(new VitalHomesCmd());
-		Objects.requireNonNull(getCommand("sethome"))
-				.setExecutor(new VitalSethomeCmd());
-		Objects.requireNonNull(getCommand("delhome"))
-				.setExecutor(new VitalDelHomeCmd());
-		Objects.requireNonNull(getCommand("delhome"))
-				.setTabCompleter(new VitalDelHomeCmd());
-	}
+    private void registerCommands() {
+        Objects.requireNonNull(getCommand("home"))
+                .setExecutor(new VitalHomeCmd());
+        Objects.requireNonNull(getCommand("home"))
+                .setTabCompleter(new VitalHomeCmd());
+        Objects.requireNonNull(getCommand("homes"))
+                .setExecutor(new VitalHomesCmd());
+        Objects.requireNonNull(getCommand("sethome"))
+                .setExecutor(new VitalSethomeCmd());
+        Objects.requireNonNull(getCommand("delhome"))
+                .setExecutor(new VitalDelHomeCmd());
+        Objects.requireNonNull(getCommand("delhome"))
+                .setTabCompleter(new VitalDelHomeCmd());
+    }
 
-	public Messages getMessages() {
-		return messages;
-	}
+    public Messages getMessages() {
+        return messages;
+    }
 
-	public HomeStorage getHomeStorage() {
-		return homeStorage;
-	}
+    public HomeStorage getHomeStorage() {
+        return homeStorage;
+    }
 }

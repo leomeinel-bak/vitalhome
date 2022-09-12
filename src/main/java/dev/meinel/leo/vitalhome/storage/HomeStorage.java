@@ -20,13 +20,13 @@ import java.util.Set;
 
 public abstract class HomeStorage {
 
-	protected final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
+    protected final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
-	public abstract Location loadHome(@NotNull Player player, @NotNull String arg);
+    public abstract Location loadHome(@NotNull Player player, @NotNull String arg);
 
-	public abstract Set<String> listHome(@NotNull Player player);
+    public abstract Set<String> listHome(@NotNull Player player);
 
-	public abstract void saveHome(@NotNull Player player, @NotNull String arg);
+    public abstract void saveHome(@NotNull Player player, @NotNull String arg);
 
-	public abstract void clear(@NotNull String playerUUID, @NotNull String arg);
+    public abstract void clear(@NotNull String playerUUID, @NotNull String arg);
 }

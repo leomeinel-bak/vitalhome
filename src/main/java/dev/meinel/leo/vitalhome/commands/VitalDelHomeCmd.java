@@ -26,42 +26,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VitalDelHomeCmd
-		implements TabExecutor {
+        implements TabExecutor {
 
-	private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
+    private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
-	@Override
-	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
-			@NotNull String[] args) {
-		if (Cmd.isArgsLengthNotEqualTo(sender, args, 1)) {
-			return false;
-		}
-		delHome(sender, args[0]);
-		return true;
-	}
+    @Override
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+            @NotNull String[] args) {
+        if (Cmd.isArgsLengthNotEqualTo(sender, args, 1)) {
+            return false;
+        }
+        delHome(sender, args[0]);
+        return true;
+    }
 
-	private void delHome(@NotNull CommandSender sender, String arg) {
-		if (CmdSpec.isInvalidCmd(sender, arg, "vitalhome.delhome")) {
-			return;
-		}
-		Player senderPlayer = (Player) sender;
-		String playerUUID = senderPlayer.getUniqueId()
-				.toString();
-		main.getHomeStorage()
-				.clear(playerUUID, arg.toLowerCase());
-		Chat.sendMessage(sender, "home-removed");
-	}
+    private void delHome(@NotNull CommandSender sender, String arg) {
+        if (CmdSpec.isInvalidCmd(sender, arg, "vitalhome.delhome")) {
+            return;
+        }
+        Player senderPlayer = (Player) sender;
+        String playerUUID = senderPlayer.getUniqueId()
+                .toString();
+        main.getHomeStorage()
+                .clear(playerUUID, arg.toLowerCase());
+        Chat.sendMessage(sender, "home-removed");
+    }
 
-	@Override
-	public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
-			@NotNull String alias, @NotNull String[] args) {
-		Player senderPlayer = (Player) sender;
-		if (main.getHomeStorage()
-				.listHome(senderPlayer)
-				.isEmpty()) {
-			return null;
-		}
-		return new ArrayList<>(main.getHomeStorage()
-				.listHome(senderPlayer));
-	}
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
+            @NotNull String alias, @NotNull String[] args) {
+        Player senderPlayer = (Player) sender;
+        if (main.getHomeStorage()
+                .listHome(senderPlayer)
+                .isEmpty()) {
+            return null;
+        }
+        return new ArrayList<>(main.getHomeStorage()
+                .listHome(senderPlayer));
+    }
 }

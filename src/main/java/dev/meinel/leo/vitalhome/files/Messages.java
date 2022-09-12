@@ -19,23 +19,23 @@ import java.io.File;
 
 public class Messages {
 
-	private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
-	private final File messagesFile;
-	private final FileConfiguration messagesConf;
+    private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
+    private final File messagesFile;
+    private final FileConfiguration messagesConf;
 
-	public Messages() {
-		messagesFile = new File(main.getDataFolder(), "messages.yml");
-		saveMessagesFile();
-		messagesConf = YamlConfiguration.loadConfiguration(messagesFile);
-	}
+    public Messages() {
+        messagesFile = new File(main.getDataFolder(), "messages.yml");
+        saveMessagesFile();
+        messagesConf = YamlConfiguration.loadConfiguration(messagesFile);
+    }
 
-	private void saveMessagesFile() {
-		if (!messagesFile.exists()) {
-			main.saveResource("messages.yml", false);
-		}
-	}
+    private void saveMessagesFile() {
+        if (!messagesFile.exists()) {
+            main.saveResource("messages.yml", false);
+        }
+    }
 
-	public FileConfiguration getMessagesConf() {
-		return messagesConf;
-	}
+    public FileConfiguration getMessagesConf() {
+        return messagesConf;
+    }
 }
