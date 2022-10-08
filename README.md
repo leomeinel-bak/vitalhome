@@ -11,7 +11,7 @@
 <!--suppress ALL -->
 <br />
 <p align="center">
-  <a href="https://github.com/LeoMeinel/VitalHome">
+  <a href="https://github.com/LeoMeinel/vitalhome">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -20,14 +20,14 @@
   <p align="center">
     Set homes on Spigot and Paper
     <br />
-    <a href="https://github.com/LeoMeinel/VitalHome"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/LeoMeinel/vitalhome"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/LeoMeinel/VitalHome">View Demo</a>
+    <a href="https://github.com/LeoMeinel/vitalhome">View Demo</a>
     ·
-    <a href="https://github.com/LeoMeinel/VitalHome/issues">Report Bug</a>
+    <a href="https://github.com/LeoMeinel/vitalhome/issues">Report Bug</a>
     ·
-    <a href="https://github.com/LeoMeinel/VitalHome/issues">Request Feature</a>
+    <a href="https://github.com/LeoMeinel/vitalhome/issues">Request Feature</a>
   </p>
 
 <!-- ABOUT THE PROJECT -->
@@ -125,7 +125,7 @@ no-homes: "&cYou don't have any homes!"
 
 ## Roadmap
 
-See the [open issues](https://github.com/LeoMeinel/VitalHome/issues) for a list of proposed features (and known
+See the [open issues](https://github.com/LeoMeinel/vitalhome/issues) for a list of proposed features (and known
 issues).
 
 <!-- CONTRIBUTING -->
@@ -153,7 +153,7 @@ Distributed under the GNU General Public License v3.0. See `LICENSE` for more in
 
 Leopold Meinel - [leo@meinel.dev](mailto:leo@meinel.dev) - eMail
 
-Project Link - [VitalHome](https://github.com/LeoMeinel/VitalHome) - GitHub
+Project Link - [VitalHome](https://github.com/LeoMeinel/vitalhome) - GitHub
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -163,15 +163,15 @@ Project Link - [VitalHome](https://github.com/LeoMeinel/VitalHome) - GitHub
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[contributors-shield]: https://img.shields.io/github/contributors-anon/LeoMeinel/VitalHome?style=for-the-badge
-[contributors-url]: https://github.com/LeoMeinel/VitalHome/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/LeoMeinel/VitalHome?label=Forks&style=for-the-badge
-[forks-url]: https://github.com/LeoMeinel/VitalHome/network/members
-[stars-shield]: https://img.shields.io/github/stars/LeoMeinel/VitalHome?style=for-the-badge
-[stars-url]: https://github.com/LeoMeinel/VitalHome/stargazers
-[issues-shield]: https://img.shields.io/github/issues/LeoMeinel/VitalHome?style=for-the-badge
-[issues-url]: https://github.com/LeoMeinel/VitalHome/issues
-[license-shield]: https://img.shields.io/github/license/LeoMeinel/VitalHome?style=for-the-badge
-[license-url]: https://github.com/LeoMeinel/VitalHome/blob/main/LICENSE
-[quality-shield]: https://img.shields.io/codefactor/grade/github/LeoMeinel/VitalHome?style=for-the-badge
-[quality-url]: https://www.codefactor.io/repository/github/LeoMeinel/VitalHome
+[contributors-shield]: https://img.shields.io/github/contributors-anon/LeoMeinel/vitalhome?style=for-the-badge
+[contributors-url]: https://github.com/LeoMeinel/vitalhome/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/LeoMeinel/vitalhome?label=Forks&style=for-the-badge
+[forks-url]: https://github.com/LeoMeinel/vitalhome/network/members
+[stars-shield]: https://img.shields.io/github/stars/LeoMeinel/vitalhome?style=for-the-badge
+[stars-url]: https://github.com/LeoMeinel/vitalhome/stargazers
+[issues-shield]: https://img.shields.io/github/issues/LeoMeinel/vitalhome?style=for-the-badge
+[issues-url]: https://github.com/LeoMeinel/vitalhome/issues
+[license-shield]: https://img.shields.io/github/license/LeoMeinel/vitalhome?style=for-the-badge
+[license-url]: https://github.com/LeoMeinel/vitalhome/blob/main/LICENSE
+[quality-shield]: https://img.shields.io/codefactor/grade/github/LeoMeinel/vitalhome?style=for-the-badge
+[quality-url]: https://www.codefactor.io/repository/github/LeoMeinel/vitalhome
