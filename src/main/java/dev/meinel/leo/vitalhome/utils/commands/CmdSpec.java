@@ -2,7 +2,7 @@
  * File: CmdSpec.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -43,8 +43,7 @@ public class CmdSpec {
                 return;
             }
             onActiveDelay.add(senderPlayer.getUniqueId());
-            String timeRemaining = String.valueOf(main.getConfig()
-                    .getLong("delay.time"));
+            String timeRemaining = String.valueOf(main.getConfig().getLong("delay.time"));
             Chat.sendMessage(senderPlayer, Map.of("%countdown%", timeRemaining), "countdown");
             new BukkitRunnable() {
 
@@ -57,15 +56,16 @@ public class CmdSpec {
                     senderPlayer.teleport(location);
                     onActiveDelay.remove(senderPlayer.getUniqueId());
                 }
-            }.runTaskLater(main, (main.getConfig()
-                    .getLong("delay.time") * 20L));
+            }.runTaskLater(main, (main.getConfig().getLong("delay.time") * 20L));
         } else {
             senderPlayer.teleport(location);
         }
     }
 
-    public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String arg, @NotNull String perm) {
-        return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm) || isInvalidHome(sender, arg);
+    public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String arg,
+            @NotNull String perm) {
+        return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm)
+                || isInvalidHome(sender, arg);
     }
 
     public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
@@ -89,8 +89,7 @@ public class CmdSpec {
         values.add(defaultValue);
         String permissionPrefix = "vitalhome.homes.";
         for (PermissionAttachmentInfo attachmentInfo : player.getEffectivePermissions()) {
-            if (attachmentInfo.getPermission()
-                    .startsWith(permissionPrefix)) {
+            if (attachmentInfo.getPermission().startsWith(permissionPrefix)) {
                 String permission = attachmentInfo.getPermission();
                 values.add(Integer.parseInt(permission.substring(permission.lastIndexOf(".") + 1)));
             }

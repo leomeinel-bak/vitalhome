@@ -2,7 +2,7 @@
  * File: VitalSethomeCmd.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -20,14 +20,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-public class VitalSethomeCmd
-        implements CommandExecutor {
+public class VitalSethomeCmd implements CommandExecutor {
 
     private final VitalHome main = JavaPlugin.getPlugin(VitalHome.class);
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
-            @NotNull String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command,
+            @NotNull String label, @NotNull String[] args) {
         if (Cmd.isArgsLengthNotEqualTo(sender, args, 1)) {
             return false;
         }
@@ -40,7 +39,6 @@ public class VitalSethomeCmd
             return;
         }
         Player senderPlayer = (Player) sender;
-        main.getHomeStorage()
-                .saveHome(senderPlayer, arg.toLowerCase());
+        main.getHomeStorage().saveHome(senderPlayer, arg.toLowerCase());
     }
 }

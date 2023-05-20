@@ -23,8 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-public final class VitalHome
-        extends JavaPlugin {
+public final class VitalHome extends JavaPlugin {
 
     private HomeStorage homeStorage;
     private Messages messages;
@@ -35,28 +34,23 @@ public final class VitalHome
         saveDefaultConfig();
         setupStorage();
         messages = new Messages();
-        Bukkit.getLogger()
-                .info("VitalHome v" + this.getPluginMeta().getVersion() + " enabled");
-        Bukkit.getLogger()
-                .info("Copyright (C) 2022 Leopold Meinel");
-        Bukkit.getLogger()
-                .info("This program comes with ABSOLUTELY NO WARRANTY!");
-        Bukkit.getLogger()
-                .info("This is free software, and you are welcome to redistribute it under certain conditions.");
+        Bukkit.getLogger().info("VitalHome v" + this.getPluginMeta().getVersion() + " enabled");
+        Bukkit.getLogger().info("Copyright (C) 2022 Leopold Meinel");
+        Bukkit.getLogger().info("This program comes with ABSOLUTELY NO WARRANTY!");
+        Bukkit.getLogger().info(
+                "This is free software, and you are welcome to redistribute it under certain conditions.");
         Bukkit.getLogger()
                 .info("See https://www.gnu.org/licenses/gpl-3.0-standalone.html for more details.");
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger()
-                .info("VitalHome v" + this.getPluginMeta().getVersion() + " disabled");
+        Bukkit.getLogger().info("VitalHome v" + this.getPluginMeta().getVersion() + " disabled");
     }
 
     private void setupStorage() {
         String storageSystem = getConfig().getString("storage-system");
-        if (Objects.requireNonNull(storageSystem)
-                .equalsIgnoreCase("mysql")) {
+        if (Objects.requireNonNull(storageSystem).equalsIgnoreCase("mysql")) {
             this.homeStorage = new HomeStorageSql();
         } else {
             this.homeStorage = new HomeStorageYaml();
@@ -64,18 +58,12 @@ public final class VitalHome
     }
 
     private void registerCommands() {
-        Objects.requireNonNull(getCommand("home"))
-                .setExecutor(new VitalHomeCmd());
-        Objects.requireNonNull(getCommand("home"))
-                .setTabCompleter(new VitalHomeCmd());
-        Objects.requireNonNull(getCommand("homes"))
-                .setExecutor(new VitalHomesCmd());
-        Objects.requireNonNull(getCommand("sethome"))
-                .setExecutor(new VitalSethomeCmd());
-        Objects.requireNonNull(getCommand("delhome"))
-                .setExecutor(new VitalDelHomeCmd());
-        Objects.requireNonNull(getCommand("delhome"))
-                .setTabCompleter(new VitalDelHomeCmd());
+        Objects.requireNonNull(getCommand("home")).setExecutor(new VitalHomeCmd());
+        Objects.requireNonNull(getCommand("home")).setTabCompleter(new VitalHomeCmd());
+        Objects.requireNonNull(getCommand("homes")).setExecutor(new VitalHomesCmd());
+        Objects.requireNonNull(getCommand("sethome")).setExecutor(new VitalSethomeCmd());
+        Objects.requireNonNull(getCommand("delhome")).setExecutor(new VitalDelHomeCmd());
+        Objects.requireNonNull(getCommand("delhome")).setTabCompleter(new VitalDelHomeCmd());
     }
 
     public Messages getMessages() {

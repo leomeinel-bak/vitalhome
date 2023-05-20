@@ -2,7 +2,7 @@
  * File: HomeStorageYaml.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -26,10 +26,10 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
-public class HomeStorageYaml
-        extends HomeStorage {
+public class HomeStorageYaml extends HomeStorage {
 
-    private static final String IOEXCEPTION = "VitalHome encountered an IOException while executing task";
+    private static final String IOEXCEPTION =
+            "VitalHome encountered an IOException while executing task";
     private static final String HOME = "home.";
     private static final String WORLD = ".world";
     private final File homeFile;
@@ -43,8 +43,7 @@ public class HomeStorageYaml
 
     @Override
     public Location loadHome(@NotNull Player player, @NotNull String arg) {
-        String playerUUID = player.getUniqueId()
-                .toString();
+        String playerUUID = player.getUniqueId().toString();
         if (homeConf.getString(HOME + playerUUID + "." + arg + WORLD) == null) {
             return null;
         }
@@ -60,8 +59,7 @@ public class HomeStorageYaml
 
     @Override
     public Set<String> listHome(@NotNull Player player) {
-        String playerUUID = player.getUniqueId()
-                .toString();
+        String playerUUID = player.getUniqueId().toString();
         Set<String> homes;
         if (homeConf.getString(HOME + playerUUID) == null) {
             return Collections.emptySet();
@@ -73,13 +71,13 @@ public class HomeStorageYaml
 
     @Override
     public void saveHome(@NotNull Player player, @NotNull String arg) {
-        String playerUUID = player.getUniqueId()
-                .toString();
+        String playerUUID = player.getUniqueId().toString();
         Location location = player.getLocation();
         if (homeConf.getConfigurationSection(HOME + playerUUID) != null) {
             @NotNull
-            Set<String> keys = Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
-                    .getKeys(false);
+            Set<String> keys =
+                    Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
+                            .getKeys(false);
             if (keys.size() >= CmdSpec.getAllowedHomes(player, 1) && !keys.contains(arg)) {
                 Chat.sendMessage(player, "max-homes");
                 return;
@@ -87,8 +85,7 @@ public class HomeStorageYaml
         }
         Chat.sendMessage(player, "home-set");
         clear(playerUUID, arg);
-        homeConf.set(HOME + playerUUID + "." + arg + WORLD, location.getWorld()
-                .getName());
+        homeConf.set(HOME + playerUUID + "." + arg + WORLD, location.getWorld().getName());
         homeConf.set(HOME + playerUUID + "." + arg + ".x", (int) location.getX());
         homeConf.set(HOME + playerUUID + "." + arg + ".y", (int) location.getY());
         homeConf.set(HOME + playerUUID + "." + arg + ".z", (int) location.getZ());
@@ -102,7 +99,8 @@ public class HomeStorageYaml
         if (homeConf.getConfigurationSection(HOME + playerUUID) == null) {
             return;
         }
-        for (String key : Objects.requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
+        for (String key : Objects
+                .requireNonNull(homeConf.getConfigurationSection(HOME + playerUUID))
                 .getKeys(false)) {
             if (Objects.equals(key, arg)) {
                 homeConf.set(HOME + playerUUID + "." + key, null);
@@ -114,8 +112,7 @@ public class HomeStorageYaml
         try {
             homeConf.save(homeFile);
         } catch (IOException ignored) {
-            Bukkit.getLogger()
-                    .info(IOEXCEPTION);
+            Bukkit.getLogger().info(IOEXCEPTION);
         }
     }
 }
