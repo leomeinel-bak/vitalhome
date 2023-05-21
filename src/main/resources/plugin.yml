@@ -7,13 +7,13 @@ description: Gives players the ability to set homes and teleport to them.
 commands:
   home:
     description: "Main command"
-    usage: "/home"
+    usage: "/home <name>"
   sethome:
     description: "Main command"
-    usage: "/sethome"
+    usage: "/sethome <name>"
   delhome:
     description: "Main command"
-    usage: "/delhome"
+    usage: "/delhome <name>"
   homes:
     description: "Main command"
     usage: "/homes"
