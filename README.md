@@ -109,7 +109,6 @@ mysql:
 ### Configuration - messages.yml
 
 ```yaml
-cmd: "&fUsage: &b/home <name> &for &b/sethome <name>"
 max-homes: "&fYou have reached the limit"
 home-set: "&fHome has been set"
 home-removed: "&fHome has been removed"
