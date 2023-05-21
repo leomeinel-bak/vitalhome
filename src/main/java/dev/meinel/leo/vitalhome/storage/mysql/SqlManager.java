@@ -40,9 +40,9 @@ public class SqlManager {
         this.username = main.getConfig().getString("mysql.username");
         this.password = main.getConfig().getString("mysql.password");
         enableConnection();
-        try (PreparedStatement statementSpawnTable = SqlManager.getConnection()
-                .prepareStatement("CREATE TABLE IF NOT EXISTS " + Sql.getPrefix()
-                        + "Home (`UUID` TEXT, `Home` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)")) {
+        try (PreparedStatement statementSpawnTable = SqlManager.getConnection().prepareStatement(
+                "CREATE TABLE IF NOT EXISTS ?Home (`UUID` TEXT, `Home` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)")) {
+            statementSpawnTable.setString(1, Sql.getPrefix());
             statementSpawnTable.executeUpdate();
         } catch (SQLException ignored) {
             Bukkit.getLogger().warning(SQLEXCEPTION);
